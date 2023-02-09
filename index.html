@@ -59,10 +59,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhangguangying.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhangguangying.github.io"></form>
       </div>
     </div>
   </div>
@@ -70,6 +70,46 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-PHP-使用-Memcache-存储-SESSION-时-SESSIONID-的前缀" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/" class="article-date">
+  <time class="dt-published" datetime="2023-02-08T19:34:36.000Z" itemprop="datePublished">2023-02-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/">PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/memcached.sessions.php">https://www.php.net/manual/zh/memcached.sessions.php</a></p>
+<p>memcached 提供了一个自定义的 session 处理程序可以被用于存储用户 session 数据到 memcached 服务端。 一个完全独立的 memcached 实例将会在内部使用，因此如果需要您可以设置一个不同的服务器池。session 的 key 被存储在前缀 <code>memc.sess.key.</code> 之下，因此, 如果你对 session 和通常的缓存使用了 同样的服务器池，请注意这一点。 译注：另外一个 session 和通常缓存分离的原因是当通常的缓存占满了 memcached 服务端后，可能会导致你的 session 被 从缓存中踢除，导致用户莫名的掉线。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/" data-id="cldwqpmxn00004zrraei4ge2a" data-title="PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-2022年终总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -114,11 +154,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" data-id="clc1b22f40000ujrr53zkamdk" data-title="2022年终总结" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" data-id="clc1b22f40000ujrr53zkamdk" data-title="2022年终总结" class="article-share-link">Teilen</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/" rel="tag">life</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
 
     </footer>
   </div>
@@ -157,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/" data-id="clam9kz6n0000cgrrapcz1jok" data-title="生产环境为大表更改字段或索引的方式" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/" data-id="clam9kz6n0000cgrrapcz1jok" data-title="生产环境为大表更改字段或索引的方式" class="article-share-link">Teilen</a>
       
       
       
@@ -201,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/11/04/ngrok%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cla29ra0d00001nrr0p0096sd" data-title="ngrok的使用" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/11/04/ngrok%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cla29ra0d00001nrr0p0096sd" data-title="ngrok的使用" class="article-share-link">Teilen</a>
       
       
       
@@ -244,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/" data-id="cla24tbo10000cprrhirrht8f" data-title="CSV导出长数值展示科学计数问题" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/" data-id="cla24tbo10000cprrhirrht8f" data-title="CSV导出长数值展示科学计数问题" class="article-share-link">Teilen</a>
       
       
       
@@ -290,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/10/18/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E7%BB%8F%E5%8E%86/" data-id="cl9faa6330000qprrgwhi15uw" data-title="记一次问题排查经历" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/10/18/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E7%BB%8F%E5%8E%86/" data-id="cl9faa6330000qprrgwhi15uw" data-title="记一次问题排查经历" class="article-share-link">Teilen</a>
       
       
       
@@ -335,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/10/17/%E5%88%86%E5%9D%97%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/" data-id="cl9dvf1wg0000ysrrbj27axa6" data-title="分块处理数据" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/10/17/%E5%88%86%E5%9D%97%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/" data-id="cl9dvf1wg0000ysrrbj27axa6" data-title="分块处理数据" class="article-share-link">Teilen</a>
       
       
       
@@ -398,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/10/12/Beanstalk%E4%BD%BF%E7%94%A8/" data-id="cl96mb9nx0000wfrr0zbhb3yf" data-title="Beanstalk使用" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/10/12/Beanstalk%E4%BD%BF%E7%94%A8/" data-id="cl96mb9nx0000wfrr0zbhb3yf" data-title="Beanstalk使用" class="article-share-link">Teilen</a>
       
       
       
@@ -451,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/10/10/hello-world/" data-id="cl92hhvdr0000yxrr8j3hdz2g" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="https://zhangguangying.github.io/2022/10/10/hello-world/" data-id="cl92hhvdr0000yxrr8j3hdz2g" data-title="Hello World" class="article-share-link">Teilen</a>
       
       
       
@@ -476,7 +516,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag">消息队列</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag">消息队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
     </div>
   </div>
 
@@ -486,16 +526,16 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a>
+      <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
     </div>
   </div>
 
@@ -503,9 +543,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/">PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀</a>
+          </li>
         
           <li>
             <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2022年终总结</a>
@@ -523,10 +567,6 @@
             <a href="/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/">CSV导出长数值展示科学计数问题</a>
           </li>
         
-          <li>
-            <a href="/2022/10/18/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E7%BB%8F%E5%8E%86/">记一次问题排查经历</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -540,7 +580,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2022 张光应<br>
+      &copy; 2023 张光应<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

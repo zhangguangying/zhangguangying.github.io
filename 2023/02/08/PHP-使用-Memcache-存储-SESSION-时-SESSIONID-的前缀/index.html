@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archiv: 2022/12 | 张光应的个人博客</title>
+  <title>PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀 | 张光应的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="张光应的个人博客">
-<meta property="og:url" content="https://zhangguangying.github.io/archives/2022/12/index.html">
+  <meta name="description" content="https:&#x2F;&#x2F;www.php.net&#x2F;manual&#x2F;zh&#x2F;memcached.sessions.php memcached 提供了一个自定义的 session 处理程序可以被用于存储用户 session 数据到 memcached 服务端。 一个完全独立的 memcached 实例将会在内部使用，因此如果需要您可以设置一个不同的服务器池。session 的 key 被存储在前缀 memc.ses">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀">
+<meta property="og:url" content="https://zhangguangying.github.io/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/index.html">
 <meta property="og:site_name" content="张光应的个人博客">
+<meta property="og:description" content="https:&#x2F;&#x2F;www.php.net&#x2F;manual&#x2F;zh&#x2F;memcached.sessions.php memcached 提供了一个自定义的 session 处理程序可以被用于存储用户 session 数据到 memcached 服务端。 一个完全独立的 memcached 实例将会在内部使用，因此如果需要您可以设置一个不同的服务器池。session 的 key 被存储在前缀 memc.ses">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-02-08T19:34:36.000Z">
+<meta property="article:modified_time" content="2023-02-09T06:49:37.094Z">
 <meta property="article:author" content="张光应">
 <meta name="twitter:card" content="summary">
   
@@ -69,39 +73,54 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-12-24T02:09:39.000Z" itemprop="datePublished">Dec 24</time>
+        <section id="main"><article id="post-PHP-使用-Memcache-存储-SESSION-时-SESSIONID-的前缀" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/" class="article-date">
+  <time class="dt-published" datetime="2023-02-08T19:34:36.000Z" itemprop="datePublished">2023-02-09</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2022年终总结</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/memcached.sessions.php">https://www.php.net/manual/zh/memcached.sessions.php</a></p>
+<p>memcached 提供了一个自定义的 session 处理程序可以被用于存储用户 session 数据到 memcached 服务端。 一个完全独立的 memcached 实例将会在内部使用，因此如果需要您可以设置一个不同的服务器池。session 的 key 被存储在前缀 <code>memc.sess.key.</code> 之下，因此, 如果你对 session 和通常的缓存使用了 同样的服务器池，请注意这一点。 译注：另外一个 session 和通常缓存分离的原因是当通常的缓存占满了 memcached 服务端后，可能会导致你的 session 被 从缓存中踢除，导致用户莫名的掉线。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/" data-id="cldwqpmxn00004zrraei4ge2a" data-title="PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">2022年终总结</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
