@@ -12,9 +12,9 @@
 <meta property="og:url" content="https://zhangguangying.github.io/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="张光应的个人博客">
 <meta property="og:description" content="生成环境的 a 表有一条慢 sql，需要为其建立一个索引。由于其表有一亿多条数据，索引不能直接在生产环境创建，所以想到的方案是创建一个跟 a 表结构相同的 b 表，并在 b 表上创建需要的索引，然后将 a 表的数据批量插入到 b 表。前段时间由于一些表不再满足业务需求，需要把主键的类型由 int 改为 bigint，同事写了一个在线上切换大表的脚本，我仿照着写了一个简单的更改一个表的。考虑到以后还">
-<meta property="og:locale">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-18T08:43:12.000Z">
-<meta property="article:modified_time" content="2022-11-18T08:53:12.344Z">
+<meta property="article:modified_time" content="2022-11-18T08:43:12.000Z">
 <meta property="article:author" content="张光应">
 <meta name="twitter:card" content="summary">
   
@@ -61,12 +61,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhangguangying.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhangguangying.github.io"></form>
       </div>
     </div>
   </div>
@@ -102,7 +102,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/" data-id="clam9kz6n0000cgrrapcz1jok" data-title="生产环境为大表更改字段或索引的方式" class="article-share-link">Teilen</a>
+      <a data-url="https://zhangguangying.github.io/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/" data-id="cle7z0ljw000cjvrr13kj5toj" data-title="生产环境为大表更改字段或索引的方式" class="article-share-link">分享</a>
       
       
       
@@ -113,7 +113,7 @@
 <nav id="article-nav">
   
     <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
+      <strong class="article-nav-caption">前一篇</strong>
       <div class="article-nav-title">
         
           2022年终总结
@@ -123,7 +123,7 @@
   
   
     <a href="/2022/11/04/ngrok%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
+      <strong class="article-nav-caption">后一篇</strong>
       <div class="article-nav-title">ngrok的使用</div>
     </a>
   
@@ -142,7 +142,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">标签</h3>
     <div class="widget">
       <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag">消息队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
     </div>
@@ -152,7 +152,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
       <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">生活</a>
     </div>
@@ -161,9 +161,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
     </div>
   </div>
 
@@ -171,7 +171,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
         
