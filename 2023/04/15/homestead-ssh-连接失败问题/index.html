@@ -4,15 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022/11 | 张光应的个人博客</title>
+  <title>homestead ssh 连接失败问题 | 张光应的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="张光应的个人博客">
-<meta property="og:url" content="https://zhangguangying.github.io/archives/2022/11/index.html">
+  <meta name="description" content="启动 vagrant 一直报这个错误，说明是连接 ssh 使用的秘钥有问题，可能跟昨天我把虚拟机里的 authorized_keys 删了有关系。 1234567default: SSH auth method: private keydefault: Error: Connection timeout. Retrying...default: Error: Connection timeout.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="homestead ssh 连接失败问题">
+<meta property="og:url" content="https://zhangguangying.github.io/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="张光应的个人博客">
+<meta property="og:description" content="启动 vagrant 一直报这个错误，说明是连接 ssh 使用的秘钥有问题，可能跟昨天我把虚拟机里的 authorized_keys 删了有关系。 1234567default: SSH auth method: private keydefault: Error: Connection timeout. Retrying...default: Error: Connection timeout.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhangguangying.github.io/images/02.png">
+<meta property="article:published_time" content="2023-04-15T04:17:27.000Z">
+<meta property="article:modified_time" content="2023-04-15T04:17:27.000Z">
 <meta property="article:author" content="张光应">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhangguangying.github.io/images/02.png">
   
     <link rel="alternate" href="/atom.xml" title="张光应的个人博客" type="application/atom+xml">
   
@@ -69,77 +75,66 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-18T08:43:12.000Z" itemprop="datePublished">11月 18</time>
+        <section id="main"><article id="post-homestead-ssh-连接失败问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2023-04-15T04:17:27.000Z" itemprop="datePublished">2023-04-15</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/">生产环境为大表更改字段或索引的方式</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      homestead ssh 连接失败问题
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/04/ngrok%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-04T08:51:10.000Z" itemprop="datePublished">11月 4</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/04/ngrok%E7%9A%84%E4%BD%BF%E7%94%A8/">ngrok的使用</a>
-    </h1>
-  
+        <p>启动 vagrant 一直报这个错误，说明是连接 ssh 使用的秘钥有问题，可能跟昨天我把虚拟机里的 authorized_keys 删了有关系。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">default: SSH auth method: private key</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Authentication failure. Retrying...</span><br><span class="line">default: Error: Authentication failure. Retrying...</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-04T06:22:01.000Z" itemprop="datePublished">11月 4</time>
-</a>
+<p>这种情况需要重新配置 ssh 秘钥，我按照如下步骤解决了问题。</p>
+<ol>
+<li>执行 <code>vagrant ssh-config</code> 查看当前虚拟机的 ssh 配置信息，输出如下</li>
+</ol>
+<p><img src="/images/02.png"></p>
+<ol start="2">
+<li>执行 <code>ssh-keygen -m PEM -t rsa -b 4096</code> 生成 rsa 秘钥，现在默认名称生成的秘钥是以 <code>BEGIN OPENSSH PRIVATE KEY</code> 开头的，与虚拟机上的类型不一致，所以生成时需要带上后面的这些参数</li>
+<li>将生成的私钥复制到第一步的 <code>IdentityFile</code> 标识的私钥文件中，同时也复制到  <code>~/.vagrant.d/insecure_private_key</code> 文件一份中（不复制也可以，执行 vagrant up 会自动生成）</li>
+<li>复制刚生成本机的公钥，使用用户名密码登录到虚拟机，将公钥添加到虚拟的 <code>authorized_keys</code> 文件中。homestead 虚拟机的用户名和密码都是 <code>vagrant</code> 。</li>
+<li>最后执行 <code>vagrant reload --provision</code> 重新配置虚拟机即可</li>
+</ol>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/">CSV导出长数值展示科学计数问题</a>
-    </h1>
-  
-
-    </header>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/" data-id="clghhikly0000myrrcvqpd1fu" data-title="homestead ssh 连接失败问题" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">windows代理配置白名单</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

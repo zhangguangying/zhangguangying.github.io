@@ -71,6 +71,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-homestead-ssh-连接失败问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2023-04-15T04:17:27.000Z" itemprop="datePublished">2023-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/">homestead ssh 连接失败问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>启动 vagrant 一直报这个错误，说明是连接 ssh 使用的秘钥有问题，可能跟昨天我把虚拟机里的 authorized_keys 删了有关系。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">default: SSH auth method: private key</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Authentication failure. Retrying...</span><br><span class="line">default: Error: Authentication failure. Retrying...</span><br></pre></td></tr></table></figure>
+
+<p>这种情况需要重新配置 ssh 秘钥，我按照如下步骤解决了问题。</p>
+<ol>
+<li>执行 <code>vagrant ssh-config</code> 查看当前虚拟机的 ssh 配置信息，输出如下</li>
+</ol>
+<p><img src="/images/02.png"></p>
+<ol start="2">
+<li>执行 <code>ssh-keygen -m PEM -t rsa -b 4096</code> 生成 rsa 秘钥，现在默认名称生成的秘钥是以 <code>BEGIN OPENSSH PRIVATE KEY</code> 开头的，与虚拟机上的类型不一致，所以生成时需要带上后面的这些参数</li>
+<li>将生成的私钥复制到第一步的 <code>IdentityFile</code> 标识的私钥文件中，同时也复制到  <code>~/.vagrant.d/insecure_private_key</code> 文件一份中（不复制也可以，执行 vagrant up 会自动生成）</li>
+<li>复制刚生成本机的公钥，使用用户名密码登录到虚拟机，将公钥添加到虚拟的 <code>authorized_keys</code> 文件中。homestead 虚拟机的用户名和密码都是 <code>vagrant</code> 。</li>
+<li>最后执行 <code>vagrant reload --provision</code> 重新配置虚拟机即可</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/" data-id="clghhikly0000myrrcvqpd1fu" data-title="homestead ssh 连接失败问题" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-windows代理配置白名单" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/" class="article-date">
@@ -470,72 +522,12 @@
 
 
   
-    <article id="post-Beanstalk使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/12/Beanstalk%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-10-12T21:25:23.000Z" itemprop="datePublished">2022-10-13</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/12/Beanstalk%E4%BD%BF%E7%94%A8/">Beanstalk使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Beanstalk-介绍"><a href="#Beanstalk-介绍" class="headerlink" title="Beanstalk 介绍"></a>Beanstalk 介绍</h2><p>看 <a target="_blank" rel="noopener" href="https://beanstalkd.github.io/">beanstalk</a> 的官网介绍，beanstalk 是一个简单、快速的工作队列，其设计之初是异步执行耗时的操作，来减少大型 web 应用的延迟。它是一个内存队列，也支持把任务写入 binlog，完成持久化。</p>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
-<li><p>job ： 一个需要异步处理的任务，是 Beanstalkd 中的基本单元，需要放在一个 tube 中。</p>
-</li>
-<li><p>tube ：一个有名的任务队列，用来存储统一类型的 job，是 producer 和 consumer 操作的对象。</p>
-</li>
-<li><p>producer ：Job 的生产者，通过 put 命令来将一个 job 放到一个 tube 中。</p>
-</li>
-<li><p>consumer ：Job 的消费者，通过 reserve&#x2F;release&#x2F;bury&#x2F;delete 命令来获取 job 或改变 job 的状态</p>
-</li>
-<li><p>任务优先级：任务(job)可以有 0~2^32 个优先级, 0 代表最高优先级。beanstalkd 采用最大最小堆(Min-max heap)处理任务优先级排序, 任何时刻调用 reserve 命令的消费者总是能拿到当前优先级最高的任务,时间复杂度为 O(logn).</p>
-</li>
-<li><p>延时任务（delay）：有两种方式可以延时执行任务(job): 生产者发布任务时指定延时；或者当任务处理完毕后,消费者再次将任务放入队列延时执行(RELEASE with )。</p>
-</li>
-<li><p>任务超时重发（time-to-run）: Beanstalkd 把任务返回给消费者以后：消费者必须在预设的 TTR (time-to-run) 时间内发送 delete &#x2F;release&#x2F; bury 改变任务状态；否则 Beanstalkd 会认为消息处理失败，然后把任务交给另外的消费者节点执行。如果消费者预计在 TTR (time-to-run) 时间内无法完成任务, 也可以发送 touch 命令,它的作用是让 Beanstalkd 从系统时间重新计算 TTR (time-to-run).</p>
-</li>
-<li><p>任务预留（buried）：如果任务因为某些原因无法执行, 消费者可以把任务置为 buried 状态让 Beanstalkd 保留这些任务。管理员可以通过 peek buried 命令查询被保留的任务，并且进行人工干预。简单的, kick 能够一次性把 n 条被保留的任务放回准备队列。</p>
-</li>
-</ul>
-<h2 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h2><p>以 <a target="_blank" rel="noopener" href="https://github.com/pheanstalk/pheanstalk">pda&#x2F;pheanstalk</a> 为例</p>
-<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Pheanstalk</span>\<span class="title">Pheanstalk</span>;</span><br><span class="line"><span class="comment"># 创建客户端</span></span><br><span class="line"><span class="variable">$pheanstalk</span> = <span class="title class_">Pheanstalk</span>::<span class="title function_ invoke__">create</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">11300</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 往指定管道生产一个字符串 job</span></span><br><span class="line"><span class="variable">$pheanstalk</span></span><br><span class="line">  -&gt;<span class="title function_ invoke__">useTube</span>(<span class="string">&#x27;testtube&#x27;</span>)</span><br><span class="line">  -&gt;<span class="title function_ invoke__">put</span>(<span class="string">&quot;job payload goes here\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 往指定管道生产一个 encode 后的数组</span></span><br><span class="line"><span class="variable">$pheanstalk</span></span><br><span class="line">    -&gt;<span class="title function_ invoke__">useTube</span>(<span class="string">&#x27;testtube&#x27;</span>)</span><br><span class="line">    -&gt;<span class="title function_ invoke__">put</span>(</span><br><span class="line">        <span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;test&#x27;</span> =&gt; <span class="string">&#x27;data&#x27;</span>]),  </span><br><span class="line">        <span class="title class_">Pheanstalk</span>::<span class="variable constant_">DEFAULT_PRIORITY</span>, // job 的优先级</span><br><span class="line">        <span class="number">30</span>, // 延迟多长时间处理</span><br><span class="line">        <span class="number">60</span>  // beanstalk 重试时间</span><br><span class="line">     );</span><br></pre></td></tr></table></figure>
-
-<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Pheanstalk</span>\<span class="title">Pheanstalk</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$pheanstalk</span> = <span class="title class_">Pheanstalk</span>::<span class="title function_ invoke__">create</span>(<span class="string">&#x27;127.0.0.1&#x27;</span>, <span class="number">11300</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从 testtube 管道获取任务</span></span><br><span class="line"><span class="variable">$pheanstalk</span>-&gt;<span class="title function_ invoke__">watch</span>(<span class="string">&#x27;testtube&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 挂起直到有一个任务返回</span></span><br><span class="line"><span class="variable">$job</span> = <span class="variable">$pheanstalk</span>-&gt;<span class="title function_ invoke__">reserve</span>();</span><br><span class="line"><span class="comment">// 等待 3 秒直到有一个任务返回，超过 3 秒则退出</span></span><br><span class="line"><span class="variable">$job</span> = <span class="variable">$pheanstalk</span>-&gt;<span class="title function_ invoke__">reserveWithTimeout</span>(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 获取 job 的数据</span></span><br><span class="line">    <span class="variable">$jobPayload</span> = <span class="variable">$job</span>-&gt;<span class="title function_ invoke__">getData</span>();</span><br><span class="line">    <span class="comment">// 处理业务</span></span><br><span class="line">    <span class="comment">// 如果业务的处理时间超过 beanstalk 对该任务的重试时间，可以通过 touch 方法，重置重试时间</span></span><br><span class="line">    <span class="variable">$pheanstalk</span>-&gt;<span class="title function_ invoke__">touch</span>(<span class="variable">$job</span>);</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 如果当前不处理此任务，将任务加入 bury 队列，等待调用 kick 方法再次推入 ready 队列</span></span><br><span class="line">    <span class="comment">// $pheanstalk-&gt;bury($job);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理完任务之后进行删除，不删除 beanstalk 会一直重试</span></span><br><span class="line">    <span class="variable">$pheanstalk</span>-&gt;<span class="title function_ invoke__">delete</span>(<span class="variable">$job</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(\<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果有异常可以重新将 job 推入任务，等待重试</span></span><br><span class="line">    <span class="variable">$pheanstalk</span>-&gt;<span class="title function_ invoke__">release</span>(<span class="variable">$job</span>); </span><br><span class="line">    <span class="comment">// 延迟 5 秒处理任务</span></span><br><span class="line">    <span class="variable">$pheanstalk</span>-&gt;<span class="title function_ invoke__">release</span>(<span class="variable">$job</span>, <span class="title class_">Pheanstalk</span>::<span class="variable constant_">DEFAULT_PRIORITY</span>, <span class="number">5</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考链接：<a target="_blank" rel="noopener" href="https://www.fzb.me/beanstalkd/">https://www.fzb.me/beanstalkd/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/10/12/Beanstalk%E4%BD%BF%E7%94%A8/" data-id="cle7z0lja0001jvrr4zph919f" data-title="Beanstalk使用" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag">消息队列</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
 
 </section>
         
@@ -580,6 +572,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/">homestead ssh 连接失败问题</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/">windows代理配置白名单</a>
           </li>
         
@@ -593,10 +589,6 @@
         
           <li>
             <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2022年终总结</a>
-          </li>
-        
-          <li>
-            <a href="/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/">生产环境为大表更改字段或索引的方式</a>
           </li>
         
       </ul>
