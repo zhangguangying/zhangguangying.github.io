@@ -107,6 +107,7 @@
 <li>复制刚生成本机的公钥，使用用户名密码登录到虚拟机，将公钥添加到虚拟的 <code>authorized_keys</code> 文件中。homestead 虚拟机的用户名和密码都是 <code>vagrant</code> 。</li>
 <li>最后执行 <code>vagrant reload --provision</code> 重新配置虚拟机即可</li>
 </ol>
+<p>直接执行这个命令应该就能解决这个问题：<code>vagrant ssh -c &quot;echo &#39;your_public_key&#39; &gt;&gt; ~/.ssh/authorized_keys&quot;</code> ，将本机公钥写入到 homestead。</p>
 
       
     </div>
