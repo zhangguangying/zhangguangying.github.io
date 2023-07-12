@@ -71,6 +71,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-分块处理数据" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/17/%E5%88%86%E5%9D%97%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/" class="article-date">
+  <time class="dt-published" datetime="2022-10-17T22:58:20.000Z" itemprop="datePublished">2022-10-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/10/17/%E5%88%86%E5%9D%97%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/">分块处理数据</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>项目中经常碰到一些慢 sql，sql 本身没有继续优化的空间，该使用的索引也都用上了。想要继续优化，就要考虑每次分块处理，也就是把原先大的结果集分割成一个个的小块，类似于 <code>Laravel</code> 的 <code>chunk</code> 方法。</p>
+<p>这里基于我司的 PHP 框架写了个简单的使用方式，通过传入 sql 的方式把 sql 中的占位符 ? 号替换为 where in 条件中的子集。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">getDataInChunkTrait</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分块获取数据：目前只支持对 sql 中单个 IN 条件的分块获取</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> array  $list 要放入 where 条件 IN 的集合</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $sql 执行的sql，其中的 ? 会被 list 子集替换</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int    $size</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getDataInChunk</span>(<span class="params"><span class="keyword">array</span> <span class="variable">$list</span>, <span class="keyword">string</span> <span class="variable">$sql</span>, <span class="keyword">int</span> <span class="variable">$size</span> = <span class="number">500</span></span>): <span class="title">array</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$result</span> = [];</span><br><span class="line">        <span class="comment">/** <span class="doctag">@var</span> Model $model */</span></span><br><span class="line">        <span class="variable">$model</span>  = <span class="title function_ invoke__">M</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="title function_ invoke__">array_chunk</span>(<span class="variable">$list</span>, <span class="variable">$size</span>) <span class="keyword">as</span> <span class="variable">$sub_list</span>) &#123;</span><br><span class="line">            <span class="variable">$sub_str</span> = <span class="title function_ invoke__">implode</span>(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$sub_list</span>);</span><br><span class="line">            <span class="variable">$run_sql</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;?&#x27;</span>, <span class="variable">$sub_str</span>, <span class="variable">$sql</span>);</span><br><span class="line">            <span class="variable">$result</span>  = <span class="title function_ invoke__">array_merge</span>(<span class="variable">$result</span>, <span class="variable">$model</span>-&gt;<span class="title function_ invoke__">select</span>(<span class="variable">$run_sql</span>) ?: []);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$result</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以这么使用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>    = <span class="string">&quot;SELECT order_id, max(create_time) as running_time</span></span><br><span class="line"><span class="string">           FROM order_operate</span></span><br><span class="line"><span class="string">           WHERE</span></span><br><span class="line"><span class="string">           		order_id IN (?)</span></span><br><span class="line"><span class="string">           	AND after_status = 4</span></span><br><span class="line"><span class="string">           GROUP BY order_id&quot;</span>;</span><br><span class="line"><span class="variable">$orders</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getDataInChunk</span>(<span class="variable">$orders</span>, <span class="variable">$sql</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2022/10/17/%E5%88%86%E5%9D%97%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/" data-id="cle7z0ljg0004jvrrawn8a5v4" data-title="分块处理数据" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Beanstalk使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/10/12/Beanstalk%E4%BD%BF%E7%94%A8/" class="article-date">
@@ -173,7 +218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
     </div>
   </div>
 
@@ -184,6 +229,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/">PHPStorm侧边栏Project里只展示文件不展示文件夹</a>
+          </li>
         
           <li>
             <a href="/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/">homestead ssh 连接失败问题</a>
@@ -199,10 +248,6 @@
         
           <li>
             <a href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/">PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀</a>
-          </li>
-        
-          <li>
-            <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2022年终总结</a>
           </li>
         
       </ul>
