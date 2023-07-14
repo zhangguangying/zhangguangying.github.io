@@ -71,6 +71,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-如何检测域名在微信是否被封" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/" class="article-date">
+  <time class="dt-published" datetime="2023-07-14T02:46:32.000Z" itemprop="datePublished">2023-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/">如何检测域名在微信是否被封</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>通过微信的桥接地址：<a target="_blank" rel="noopener" href="http://mp.weixinbridge.com/mp/wapredirect?url=">http://mp.weixinbridge.com/mp/wapredirect?url=</a> , 连上自己的域名，可以通过请求该连接返回的内容，获取是否被封。</p>
+<p>如下是 PHP 的示例代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;http://mp.weixinbridge.com/mp/wapredirect?url=http://www.baidu.com&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$result</span>, <span class="string">&#x27;已停止访问该网页&#x27;</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;已封&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$result</span>, <span class="string">&#x27;申请恢复访问&#x27;</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;已封&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>逻辑很简单，可以根据实际情况做重试或代理。只是如果常用的功能，查阅中文互联网竟然没有明显的实现方式，疑惑。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/" data-id="clk2gpv220000sfrr5p3r369m" data-title="如何检测域名在微信是否被封" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-APIFOX-设置前置脚本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/" class="article-date">
@@ -475,49 +518,6 @@
 
 
   
-    <article id="post-CSV导出长数值展示科学计数问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2022-11-04T06:22:01.000Z" itemprop="datePublished">2022-11-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/">CSV导出长数值展示科学计数问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>项目中使用 CSV 导出数据时，如果数值过长则使用科学计数法展示，这往往跟实际的需求不符。究其原因不是 CSV 造成的，CSV 就是简单的文本格式，使用文本编辑器打开导出的 CSV 文件，可以发现数值就是原本的数值。是 Excel 以科学计数法存储长数值。</p>
-<p>看网上的解决方案大都是在长数值的前&#x2F;后加上一个字符，比如”\t”，让 Excel 以字符串的形式展示数值。</p>
-<p>如果后续还需要对 CSV 文件做其它处理，加字符的方式可以会带来额外的工作，所以不如直接改为 Excel 导出。</p>
-<p>Excel 本身也可以直接导入 CSV 文件，设置对应字段的格式。在 “数据”-&gt;“从文本&#x2F;CSV”-&gt;选择对应的 csv 文件-&gt;点击转换数据-&gt;将对应的数值字段设置为文本 <code>type text</code> -&gt; 点击关闭并上载</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/11/04/baea57e22561ed3e.png" alt="image-20221104143914628"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/11/04/CSV%E5%AF%BC%E5%87%BA%E9%95%BF%E6%95%B0%E5%80%BC%E5%B1%95%E7%A4%BA%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/" data-id="cle7z0ljd0002jvrr8gpb17f5" data-title="CSV导出长数值展示科学计数问题" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -568,6 +568,10 @@
       <ul>
         
           <li>
+            <a href="/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/">如何检测域名在微信是否被封</a>
+          </li>
+        
+          <li>
             <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/">APIFOX 设置前置脚本</a>
           </li>
         
@@ -581,10 +585,6 @@
         
           <li>
             <a href="/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/">windows代理配置白名单</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/17/%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">设置请求头跨域问题</a>
           </li>
         
       </ul>

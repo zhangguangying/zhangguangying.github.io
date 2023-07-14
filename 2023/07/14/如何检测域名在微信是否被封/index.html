@@ -4,21 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>homestead ssh 连接失败问题 | 张光应的个人博客</title>
+  <title>如何检测域名在微信是否被封 | 张光应的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="启动 vagrant 一直报这个错误，说明是连接 ssh 使用的秘钥有问题，可能跟昨天我把虚拟机里的 authorized_keys 删了有关系。 1234567default: SSH auth method: private keydefault: Error: Connection timeout. Retrying...default: Error: Connection timeout.">
+  <meta name="description" content="通过微信的桥接地址：http:&#x2F;&#x2F;mp.weixinbridge.com&#x2F;mp&#x2F;wapredirect?url&#x3D; , 连上自己的域名，可以通过请求该连接返回的内容，获取是否被封。 如下是 PHP 的示例代码 1234567$str &#x3D; file_get_contents(&amp;#x27;http:&#x2F;&#x2F;mp.weixinbridge.com&#x2F;mp&#x2F;wapredirect?url&#x3D;http:&#x2F;&#x2F;www.b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="homestead ssh 连接失败问题">
-<meta property="og:url" content="https://zhangguangying.github.io/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="如何检测域名在微信是否被封">
+<meta property="og:url" content="https://zhangguangying.github.io/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/index.html">
 <meta property="og:site_name" content="张光应的个人博客">
-<meta property="og:description" content="启动 vagrant 一直报这个错误，说明是连接 ssh 使用的秘钥有问题，可能跟昨天我把虚拟机里的 authorized_keys 删了有关系。 1234567default: SSH auth method: private keydefault: Error: Connection timeout. Retrying...default: Error: Connection timeout.">
+<meta property="og:description" content="通过微信的桥接地址：http:&#x2F;&#x2F;mp.weixinbridge.com&#x2F;mp&#x2F;wapredirect?url&#x3D; , 连上自己的域名，可以通过请求该连接返回的内容，获取是否被封。 如下是 PHP 的示例代码 1234567$str &#x3D; file_get_contents(&amp;#x27;http:&#x2F;&#x2F;mp.weixinbridge.com&#x2F;mp&#x2F;wapredirect?url&#x3D;http:&#x2F;&#x2F;www.b">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhangguangying.github.io/images/02.png">
-<meta property="article:published_time" content="2023-04-15T04:17:27.000Z">
-<meta property="article:modified_time" content="2023-04-15T04:17:27.000Z">
+<meta property="article:published_time" content="2023-07-14T02:46:32.000Z">
+<meta property="article:modified_time" content="2023-07-14T02:46:32.000Z">
 <meta property="article:author" content="张光应">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhangguangying.github.io/images/02.png">
   
     <link rel="alternate" href="/atom.xml" title="张光应的个人博客" type="application/atom+xml">
   
@@ -75,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-homestead-ssh-连接失败问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-如何检测域名在微信是否被封" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2023-04-15T04:17:27.000Z" itemprop="datePublished">2023-04-15</time>
+    <a href="/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/" class="article-date">
+  <time class="dt-published" datetime="2023-07-14T02:46:32.000Z" itemprop="datePublished">2023-07-14</time>
 </a>
     
   </div>
@@ -89,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      homestead ssh 连接失败问题
+      如何检测域名在微信是否被封
     </h1>
   
 
@@ -97,26 +95,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>启动 vagrant 一直报这个错误，说明是连接 ssh 使用的秘钥有问题，可能跟昨天我把虚拟机里的 authorized_keys 删了有关系。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">default: SSH auth method: private key</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Connection timeout. Retrying...</span><br><span class="line">default: Error: Authentication failure. Retrying...</span><br><span class="line">default: Error: Authentication failure. Retrying...</span><br></pre></td></tr></table></figure>
+        <p>通过微信的桥接地址：<a target="_blank" rel="noopener" href="http://mp.weixinbridge.com/mp/wapredirect?url=">http://mp.weixinbridge.com/mp/wapredirect?url=</a> , 连上自己的域名，可以通过请求该连接返回的内容，获取是否被封。</p>
+<p>如下是 PHP 的示例代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;http://mp.weixinbridge.com/mp/wapredirect?url=http://www.baidu.com&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$result</span>, <span class="string">&#x27;已停止访问该网页&#x27;</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;已封&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$result</span>, <span class="string">&#x27;申请恢复访问&#x27;</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;已封&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这种情况需要重新配置 ssh 秘钥，我按照如下步骤解决了问题。</p>
-<ol>
-<li>执行 <code>vagrant ssh-config</code> 查看当前虚拟机的 ssh 配置信息，输出如下</li>
-</ol>
-<p><img src="/images/02.png"></p>
-<ol start="2">
-<li>执行 <code>ssh-keygen -m PEM -t rsa -b 4096</code> 生成 rsa 秘钥，现在默认名称生成的秘钥是以 <code>BEGIN OPENSSH PRIVATE KEY</code> 开头的，与虚拟机上的类型不一致，所以生成时需要带上后面的这些参数</li>
-<li>将生成的私钥复制到第一步的 <code>IdentityFile</code> 标识的私钥文件中，同时也复制到  <code>~/.vagrant.d/insecure_private_key</code> 文件一份中（不复制也可以，执行 vagrant up 会自动生成）</li>
-<li>复制刚生成本机的公钥，使用用户名密码登录到虚拟机，将公钥添加到虚拟的 <code>authorized_keys</code> 文件中。homestead 虚拟机的用户名和密码都是 <code>vagrant</code> 。</li>
-<li>最后执行 <code>vagrant reload --provision</code> 重新配置虚拟机即可</li>
-</ol>
-<p>直接执行这个命令应该就能解决这个问题：<code>vagrant ssh -c &quot;echo &#39;your_public_key&#39; &gt;&gt; ~/.ssh/authorized_keys&quot;</code> ，将本机公钥写入到 homestead。</p>
+<p>逻辑很简单，可以根据实际情况做重试或代理。只是如果常用的功能，查阅中文互联网竟然没有明显的实现方式，疑惑。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/" data-id="clghhikly0000myrrcvqpd1fu" data-title="homestead ssh 连接失败问题" class="article-share-link">分享</a>
+      <a data-url="https://zhangguangying.github.io/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/" data-id="clk2gpv220000sfrr5p3r369m" data-title="如何检测域名在微信是否被封" class="article-share-link">分享</a>
       
       
       
@@ -126,19 +114,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          PHPStorm侧边栏Project里只展示文件不展示文件夹
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">windows代理配置白名单</div>
+      <div class="article-nav-title">APIFOX 设置前置脚本</div>
     </a>
   
 </nav>
