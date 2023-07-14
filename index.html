@@ -71,6 +71,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-APIFOX-设置前置脚本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/" class="article-date">
+  <time class="dt-published" datetime="2023-07-14T00:40:03.000Z" itemprop="datePublished">2023-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/">APIFOX 设置前置脚本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>日常工作中主要用 APIFOX 测试 API 接口，API 接口有很多需要鉴权的地方，如果每次都需要手动设置鉴权参数比较麻烦，可以利用官方提供的前置脚本功能设置鉴权的参数。前置脚本可以方便的使用 JS 语言编写。</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://apifox.com/help/pre-post-processors-and-scripts/scripts/api-references/javascript-library">https://apifox.com/help/pre-post-processors-and-scripts/scripts/api-references/javascript-library</a></p>
+<p>下面是一个示例，生成鉴权参数并设置请求头和请求参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> secret = <span class="string">&#x27;鉴权密钥&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 存放所有需要用来签名的参数</span></span><br><span class="line"><span class="keyword">let</span> param = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加入 query 参数</span></span><br><span class="line"><span class="keyword">let</span> queryParams = pm.<span class="property">request</span>.<span class="property">url</span>.<span class="property">query</span></span><br><span class="line">queryParams.<span class="title function_">each</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!item.<span class="property">disabled</span> &amp;&amp; item.<span class="property">value</span> !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// 启用且非空参数值的参数才参与签名</span></span><br><span class="line">    param[item.<span class="property">key</span>] = item.<span class="property">value</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加入 body 参数</span></span><br><span class="line"><span class="keyword">if</span> (pm.<span class="property">request</span>.<span class="property">body</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> formData;</span><br><span class="line">    <span class="keyword">switch</span> (pm.<span class="property">request</span>.<span class="property">body</span>.<span class="property">mode</span>) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;formdata&#x27;</span>:</span><br><span class="line">            formData = pm.<span class="property">request</span>.<span class="property">body</span>.<span class="property">formdata</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;urlencoded&#x27;</span>:</span><br><span class="line">            formData = pm.<span class="property">request</span>.<span class="property">body</span>.<span class="property">urlencoded</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;raw&#x27;</span>:</span><br><span class="line">            <span class="comment">// 如果没有 JSON 格式的请求 body，或 JSON 格式 body 不参与签名，可以删除这一段</span></span><br><span class="line">            <span class="keyword">let</span> contentType = pm.<span class="property">request</span>.<span class="property">headers</span>.<span class="title function_">get</span>(<span class="string">&#x27;content-type&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span> (</span><br><span class="line">                contentType</span><br><span class="line">                &amp;&amp; pm.<span class="property">request</span>.<span class="property">body</span>.<span class="property">raw</span></span><br><span class="line">                &amp;&amp; contentType.<span class="title function_">toLowerCase</span>().<span class="title function_">indexOf</span>(<span class="string">&#x27;application/json&#x27;</span>) !== -<span class="number">1</span></span><br><span class="line">            ) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">let</span> jsonData = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(pm.<span class="property">request</span>.<span class="property">body</span>.<span class="property">raw</span>);</span><br><span class="line">                  	<span class="comment">/*</span></span><br><span class="line"><span class="comment">                  	* 注意：通过脚本取出来的接口参数，如果参数包含变量，变量是不会替换成对应的值。如想要获取替换后的值，可使用`pm.variables.replaceIn`方法处理：</span></span><br><span class="line"><span class="comment">                    * let body = pm.variables.replaceIn(pm.request.body.raw);</span></span><br><span class="line"><span class="comment">                    * let jsonData = JSON.parse(body);</span></span><br><span class="line"><span class="comment">                  	*/</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> jsonData) &#123;</span><br><span class="line">                        <span class="keyword">let</span> value = <span class="string">`<span class="subst">$&#123;jsonData[key]&#125;</span>`</span>; <span class="comment">// 此处要注意如果值的实际类型不是 string 需要根据实际情况处理。</span></span><br><span class="line">                        <span class="keyword">if</span> (value !== <span class="string">&#x27;&#x27;</span>) &#123; <span class="comment">// 非空参数值的参数才参与签名</span></span><br><span class="line">                            param[key] = value;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求 body 不是 JSON 格式&#x27;</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="attr">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (formData) &#123;</span><br><span class="line">        formData.<span class="title function_">each</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!item.<span class="property">disabled</span> &amp;&amp; item.<span class="property">value</span> !== <span class="string">&#x27;&#x27;</span>) &#123; <span class="comment">// 启用且非空参数值的参数才参与签名</span></span><br><span class="line">                param[item.<span class="property">key</span>] = item.<span class="property">value</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 添加鉴权接口需要的两个参数(个人项目需要)</span></span><br><span class="line">param[<span class="string">&#x27;_t&#x27;</span>] = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>()/<span class="number">1000</span>);</span><br><span class="line">param[<span class="string">&#x27;_s&#x27;</span>] = <span class="string">&#x27;ssss&#x27;</span>;</span><br><span class="line"><span class="comment">// 取 key</span></span><br><span class="line"><span class="keyword">let</span> keys = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> param) &#123;</span><br><span class="line">    keys.<span class="title function_">push</span>(key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参数名 ASCII 码从小到大排序（字典序）</span></span><br><span class="line">keys.<span class="title function_">sort</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 转成键值对</span></span><br><span class="line"><span class="keyword">let</span> paramPair = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = keys.<span class="property">length</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> k = keys[i];</span><br><span class="line">    paramPair.<span class="title function_">push</span>(k + <span class="string">&#x27;=&#x27;</span> + param[k])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拼接</span></span><br><span class="line"><span class="keyword">let</span> stringSignTemp = paramPair.<span class="title function_">join</span>(<span class="string">&#x27;&amp;&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stringSignTemp);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sign1 = <span class="title class_">CryptoJS</span>.<span class="title class_">MD5</span>(stringSignTemp).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sign1);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sign = <span class="title class_">CryptoJS</span>.<span class="title class_">MD5</span>(secret + sign1).<span class="title function_">toString</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sign);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置请求头</span></span><br><span class="line">pm.<span class="property">request</span>.<span class="property">headers</span>.<span class="title function_">add</span>(&#123; <span class="attr">key</span>: <span class="string">&#x27;api-security&#x27;</span>, <span class="attr">value</span>: sign+<span class="string">&quot;&quot;</span>&#125;)</span><br><span class="line"><span class="comment">// 设置请求参数</span></span><br><span class="line">queryParams.<span class="title function_">upsert</span>(&#123;</span><br><span class="line">  <span class="attr">key</span>: <span class="string">&#x27;_t&#x27;</span>,</span><br><span class="line">  <span class="attr">value</span>: param[<span class="string">&#x27;_t&#x27;</span>] + <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;)</span><br><span class="line">queryParams.<span class="title function_">upsert</span>(&#123;</span><br><span class="line">  <span class="attr">key</span>: <span class="string">&#x27;_s&#x27;</span>,</span><br><span class="line">  <span class="attr">value</span>: param[<span class="string">&#x27;_s&#x27;</span>]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>可以在这里看到 console.log 打印的日志</p>
+<p><img src="/images/03.png"></p>
+<p>在这里配置一个统一的前置脚本，方便子目录继承</p>
+<p><img src="/images/04.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/" data-id="clk2cejcw000043rrbbag9lqx" data-title="APIFOX 设置前置脚本" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-PHPStorm侧边栏Project里只展示文件不展示文件夹" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/" class="article-date">
@@ -471,52 +518,6 @@
 
 
   
-    <article id="post-记一次问题排查经历" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/18/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E7%BB%8F%E5%8E%86/" class="article-date">
-  <time class="dt-published" datetime="2022-10-18T22:56:15.000Z" itemprop="datePublished">2022-10-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/18/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E7%BB%8F%E5%8E%86/">记一次问题排查经历</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>先简单描述下背景。我们的项目是商家发布订单，可以对订单进行加减量，用户以任务为单位做商家发布的订单，每一个任务有各种状态，不同状态会有对订单加减量的操作，比如用户超时未提交会有脚本自动返还扣的量。</p>
-<p>我们有一个脚本每天都会对一下订单的消耗各数据是否一致，就是订单支付的总额与订单的消耗、余量的一个对比。有一天报警了一个订单数据不一致的情况，我排查了一下商家的行为，存在大量的加一个量的情况，我以为是这里出了问题，便以此为目标去寻找证据，最终没找到，商家加减量的代码逻辑并没有看到漏洞。不过排查的过程中得到了一个结论——商家的余量比实际支付的多了一个。于是我们手动执行 sql 给这个订单减了一个量，这个问题就暂时搁置了。</p>
-<p>前两天又有订单出现了这个问题，我这次换了个思路排查了一下，确定了出现这个问题的原因。由于上次已经确定了不是商家加减量那里的问题，这次就先看了下订单操作余量的代码逻辑(就一处入口，各处调用)，以及调用这块逻辑的地方。手动操作的地方是用户开始、放弃任务及商家审核任务，自动操作的地方是两个定时任务——超时未提交及超时未重提。据此提出了一个可能：手动操作与定时脚本同时操作了同一个任务，导致量差了。最终也确实定位了是这个原因，由于任务超时我们并没有限制不能提交或放弃(定时任务将状态更改后才会限制)，导致定时任务执行放弃的时候有可能会多退一个量。</p>
-<p>在第一次出现这个问题未定位到原因时，再一次出现时，心里是有点抵触去解决的，可能是因为前一次的失败阴影。不过这都是正常的心理，调整好心态就好了。以我的经验来看，遇到的问题基本上都是可以解决的，就是要反复去面对嘛，失败几次是很正常的。</p>
-<hr>
-<p>后来是新写了一个更新订单状态的方法，当状态更新失败后，抛出异常来使事务回滚的方式解决的这个问题。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">$this</span>-&gt;default_model-&gt;pdo-&gt;<span class="title function_ invoke__">beginTransaction</span>();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 修改任务状态</span></span><br><span class="line">    <span class="variable">$res</span> = <span class="variable">$task</span>-&gt;<span class="title function_ invoke__">updateTaskStatusUseOldStatus</span>((<span class="keyword">int</span>)<span class="variable">$item</span>[<span class="string">&#x27;task_id&#x27;</span>], <span class="variable">$new_status</span>, (<span class="keyword">int</span>)<span class="variable">$item</span>[<span class="string">&#x27;status&#x27;</span>]);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$res</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">PDOException</span>(<span class="string">&#x27;修改任务状态失败&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ... 其它业务</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;default_model-&gt;pdo-&gt;<span class="title function_ invoke__">rollBack</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">updateTaskStatusUseOldStatus</span>(<span class="params"><span class="keyword">int</span> <span class="variable">$task_id</span>, <span class="keyword">int</span> <span class="variable">$status</span>, <span class="keyword">int</span> <span class="variable">$old_status</span></span>): <span class="title">int</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$sql</span> = <span class="string">&quot;UPDATE task SET status=:status WHERE task_id=:task_id AND status=:old_status&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;default_model-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>, [<span class="variable">$status</span>, <span class="variable">$task_id</span>, <span class="variable">$old_status</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)<span class="variable language_">$this</span>-&gt;default_model-&gt;<span class="title function_ invoke__">rowCount</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/10/18/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E7%BB%8F%E5%8E%86/" data-id="cle7z0ljw000bjvrr498phazw" data-title="记一次问题排查经历" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -567,6 +568,10 @@
       <ul>
         
           <li>
+            <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/">APIFOX 设置前置脚本</a>
+          </li>
+        
+          <li>
             <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/">PHPStorm侧边栏Project里只展示文件不展示文件夹</a>
           </li>
         
@@ -580,10 +585,6 @@
         
           <li>
             <a href="/2023/03/17/%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">设置请求头跨域问题</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/">PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀</a>
           </li>
         
       </ul>
