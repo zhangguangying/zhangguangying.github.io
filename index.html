@@ -71,6 +71,87 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python常用数据结构的声明与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2023-08-18T02:32:40.000Z" itemprop="datePublished">2023-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/">python常用数据结构的声明与使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><p>声明方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">l2 = <span class="built_in">list</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">l3 = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p>方法</p>
+<ul>
+<li><code>append(item)</code>: 在列表末尾添加元素。</li>
+<li><code>insert(index, item)</code>: 在指定位置插入元素。</li>
+<li><code>remove(item)</code>: 删除第一个匹配的元素。</li>
+<li><code>pop(index)</code>: 弹出指定位置的元素。</li>
+<li><code>len(list)</code>: 返回列表的长度。</li>
+<li><code>index(item)</code>: 返回指定元素的索引。</li>
+<li><code>count(item)</code>: 统计指定元素出现的次数。</li>
+<li><code>sort()</code>: 对列表进行排序（就地排序）。</li>
+<li><code>reverse()</code>: 反转列表元素的顺序。</li>
+</ul>
+<h2 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h2><p>声明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t1 = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">t2 = <span class="built_in">tuple</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><p>声明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d1 = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">30</span>&#125;</span><br><span class="line">d2 = <span class="built_in">dict</span>([(<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>)])</span><br></pre></td></tr></table></figure>
+
+<p>方法</p>
+<ul>
+<li><code>keys()</code>: 返回字典的所有键。</li>
+<li><code>values()</code>: 返回字典的所有值。</li>
+<li><code>items()</code>: 返回字典的所有键-值对。</li>
+<li><code>get(key)</code>: 根据键获取对应的值。</li>
+<li><code>pop(key)</code>: 弹出指定键的值。</li>
+<li><code>len(dict)</code>: 返回字典中键-值对的数量。</li>
+<li><code>in</code> 和 <code>not in</code>：检查键是否存在于字典中。</li>
+</ul>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>声明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">s2 = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>方法</p>
+<ul>
+<li><code>add(item)</code>: 添加元素到集合。</li>
+<li><code>remove(item)</code>: 移除集合中的元素，如果元素不存在会引发错误。</li>
+<li><code>discard(item)</code>: 移除集合中的元素，如果元素不存在不会引发错误。</li>
+<li><code>pop()</code>: 弹出一个元素。</li>
+<li><code>len(set)</code>: 返回集合的大小。</li>
+<li><code>in</code> 和 <code>not in</code>：检查元素是否存在于集合中。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="cllggc77z0000vgrr2yn39mle" data-title="python常用数据结构的声明与使用" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Linux软件管理的一些总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/16/Linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" class="article-date">
@@ -555,47 +636,6 @@
 
 
   
-    <article id="post-生产环境为大表更改字段或索引的方式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2022-11-18T08:43:12.000Z" itemprop="datePublished">2022-11-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/">生产环境为大表更改字段或索引的方式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>生成环境的 a 表有一条慢 sql，需要为其建立一个索引。由于其表有一亿多条数据，索引不能直接在生产环境创建，所以想到的方案是创建一个跟 a 表结构相同的 b 表，并在 b 表上创建需要的索引，然后将 a 表的数据批量插入到 b 表。前段时间由于一些表不再满足业务需求，需要把主键的类型由 int 改为 bigint，同事写了一个在线上切换大表的脚本，我仿照着写了一个简单的更改一个表的。考虑到以后还可能遇到这种场景，所以把脚本记录于此。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 同步表数据</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">syncTable</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">ini_set</span>(<span class="string">&#x27;memory_limit&#x27;</span>, -<span class="number">1</span>);</span><br><span class="line">    <span class="variable">$deadline</span> = <span class="title function_ invoke__">time</span>() + <span class="number">55</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** <span class="doctag">@var</span> Model $model */</span></span><br><span class="line">    <span class="variable">$model</span>     = <span class="title function_ invoke__">M</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="variable">$sql</span>       = <span class="string">&quot;SELECT max(id) FROM b&quot;</span>;<span class="comment">// 获取已经同步的条数</span></span><br><span class="line">    <span class="variable">$synced_id</span> = <span class="variable">$model</span>-&gt;<span class="title function_ invoke__">getField</span>(<span class="variable">$sql</span>) ?: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$limit</span> = <span class="number">100000</span>;<span class="comment">// 每个插入的条数</span></span><br><span class="line">    <span class="variable">$start</span> = <span class="variable">$synced_id</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="title function_ invoke__">time</span>() &lt; <span class="variable">$deadline</span>) &#123;</span><br><span class="line">        <span class="variable">$sql</span> = <span class="string">&quot;SELECT id FROM a WHERE id &gt; <span class="subst">&#123;$start&#125;</span> LIMIT 1&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$model</span>-&gt;<span class="title function_ invoke__">getField</span>(<span class="variable">$sql</span>))) &#123;</span><br><span class="line">            <span class="title function_ invoke__">sleep</span>(<span class="number">3</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$step</span> = <span class="variable">$start</span> + <span class="variable">$limit</span>;</span><br><span class="line">        <span class="variable">$sql</span>  = <span class="string">&quot;INSERT INTO b SELECT * FROM a WHERE id &gt; <span class="subst">&#123;$start&#125;</span> AND id &lt;= <span class="subst">&#123;$step&#125;</span>&quot;</span>;</span><br><span class="line">        <span class="variable">$model</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line">        <span class="variable">$start</span> = <span class="variable">$step</span>;</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">usleep</span>(<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重命名表</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">renameTable</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$deadline</span> = <span class="title function_ invoke__">time</span>() + <span class="number">55</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** <span class="doctag">@var</span> Model $model */</span></span><br><span class="line">    <span class="variable">$model</span>  = <span class="title function_ invoke__">M</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="title function_ invoke__">time</span>() &lt; <span class="variable">$deadline</span>) &#123;</span><br><span class="line">        <span class="variable">$sql</span>      = <span class="string">&quot;SELECT max(id) FROM a&quot;</span>;</span><br><span class="line">        <span class="variable">$max_id_1</span> = <span class="variable">$model</span>-&gt;<span class="title function_ invoke__">getField</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span>      = <span class="string">&quot;SELECT max(id) FROM b&quot;</span>;</span><br><span class="line">        <span class="variable">$max_id_2</span> = <span class="variable">$model</span>-&gt;<span class="title function_ invoke__">getField</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$max_id_1</span> != <span class="variable">$max_id_2</span>) &#123;</span><br><span class="line">            <span class="title function_ invoke__">print_ln</span>(<span class="string">&#x27;数据未同步完&#x27;</span>);</span><br><span class="line">            <span class="title function_ invoke__">usleep</span>(<span class="number">100</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sql</span> = <span class="string">&quot;RENAME TABLE a TO a_back, b to a&quot;</span>;</span><br><span class="line">        <span class="variable">$model</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">print_ln</span>(<span class="string">&#x27;重命名成功&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/11/18/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%BA%E5%A4%A7%E8%A1%A8%E6%9B%B4%E6%94%B9%E5%AD%97%E6%AE%B5%E6%88%96%E7%B4%A2%E5%BC%95%E7%9A%84%E6%96%B9%E5%BC%8F/" data-id="cle7z0ljw000cjvrr13kj5toj" data-title="生产环境为大表更改字段或索引的方式" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -646,6 +686,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/">python常用数据结构的声明与使用</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/16/Linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/">Linux软件管理的一些总结</a>
           </li>
         
@@ -659,10 +703,6 @@
         
           <li>
             <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/">PHPStorm侧边栏Project里只展示文件不展示文件夹</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/15/homestead-ssh-%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/">homestead ssh 连接失败问题</a>
           </li>
         
       </ul>

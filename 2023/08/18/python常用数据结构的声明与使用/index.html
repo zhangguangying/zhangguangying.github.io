@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>python常用数据结构的声明与使用 | 张光应的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="list声明方式 123l1 &#x3D; [1, 2, 3, 4]l2 &#x3D; list([1, 2, 3, 4])l3 &#x3D; list(range(1, 5))  方法  append(item): 在列表末尾添加元素。 insert(index, item): 在指定位置插入元素。 remove(item): 删除第一个匹配的元素。 pop(index): 弹出指定位置的元素。 len(list): 返回列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python常用数据结构的声明与使用">
+<meta property="og:url" content="https://zhangguangying.github.io/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="张光应的个人博客">
+<meta property="og:description" content="list声明方式 123l1 &#x3D; [1, 2, 3, 4]l2 &#x3D; list([1, 2, 3, 4])l3 &#x3D; list(range(1, 5))  方法  append(item): 在列表末尾添加元素。 insert(index, item): 在指定位置插入元素。 remove(item): 删除第一个匹配的元素。 pop(index): 弹出指定位置的元素。 len(list): 返回列">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-18T02:32:40.000Z">
+<meta property="article:modified_time" content="2023-08-18T02:32:40.000Z">
+<meta property="article:author" content="张光应">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="张光应的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张光应的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhangguangying.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-python常用数据结构的声明与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2023-08-18T02:32:40.000Z" itemprop="datePublished">2023-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      python常用数据结构的声明与使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><p>声明方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">l2 = <span class="built_in">list</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">l3 = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p>方法</p>
+<ul>
+<li><code>append(item)</code>: 在列表末尾添加元素。</li>
+<li><code>insert(index, item)</code>: 在指定位置插入元素。</li>
+<li><code>remove(item)</code>: 删除第一个匹配的元素。</li>
+<li><code>pop(index)</code>: 弹出指定位置的元素。</li>
+<li><code>len(list)</code>: 返回列表的长度。</li>
+<li><code>index(item)</code>: 返回指定元素的索引。</li>
+<li><code>count(item)</code>: 统计指定元素出现的次数。</li>
+<li><code>sort()</code>: 对列表进行排序（就地排序）。</li>
+<li><code>reverse()</code>: 反转列表元素的顺序。</li>
+</ul>
+<h2 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h2><p>声明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t1 = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">t2 = <span class="built_in">tuple</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><p>声明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d1 = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">30</span>&#125;</span><br><span class="line">d2 = <span class="built_in">dict</span>([(<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>)])</span><br></pre></td></tr></table></figure>
+
+<p>方法</p>
+<ul>
+<li><code>keys()</code>: 返回字典的所有键。</li>
+<li><code>values()</code>: 返回字典的所有值。</li>
+<li><code>items()</code>: 返回字典的所有键-值对。</li>
+<li><code>get(key)</code>: 根据键获取对应的值。</li>
+<li><code>pop(key)</code>: 弹出指定键的值。</li>
+<li><code>len(dict)</code>: 返回字典中键-值对的数量。</li>
+<li><code>in</code> 和 <code>not in</code>：检查键是否存在于字典中。</li>
+</ul>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>声明</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">s2 = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>方法</p>
+<ul>
+<li><code>add(item)</code>: 添加元素到集合。</li>
+<li><code>remove(item)</code>: 移除集合中的元素，如果元素不存在会引发错误。</li>
+<li><code>discard(item)</code>: 移除集合中的元素，如果元素不存在不会引发错误。</li>
+<li><code>pop()</code>: 弹出一个元素。</li>
+<li><code>len(set)</code>: 返回集合的大小。</li>
+<li><code>in</code> 和 <code>not in</code>：检查元素是否存在于集合中。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="cllggc77z0000vgrr2yn39mle" data-title="python常用数据结构的声明与使用" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/08/16/Linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Linux软件管理的一些总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" rel="tag">消息队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 10px;">消息队列</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">生活</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/">python常用数据结构的声明与使用</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/16/Linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/">Linux软件管理的一些总结</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/">如何检测域名在微信是否被封</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/">APIFOX 设置前置脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/">PHPStorm侧边栏Project里只展示文件不展示文件夹</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 张光应<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
