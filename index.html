@@ -155,6 +155,26 @@
 </ul>
 <p>每一个服务在 <code>/usr/lib/systemd/system</code> 目录下都有一个 service 文件，service 文件中的 <code>ExecStart</code> 与 <code>ExecStop</code> 控制服务如何启动与停止。<code>reload</code> 功能由 <code>systemctl</code> 提供。</p>
 <p>如果你要让 <code>systemctl</code> 管理自己的软件，同样需要在 <code>/usr/lib/systemd/system</code> 下创建自己的 <code>service</code> 文件，然后执行 <code>sudo systemctl daemon-reload</code> 命令使配置生效。</p>
+<h2 id="添加-sudo-用户与限制-root-登录"><a href="#添加-sudo-用户与限制-root-登录" class="headerlink" title="添加 sudo 用户与限制 root 登录"></a>添加 sudo 用户与限制 root 登录</h2><ol>
+<li>添加用户并加入 sudo 组</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd username</span><br><span class="line">sudo passwd username</span><br><span class="line">sudo usermod -aG wheel username</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>设置执行 sudo 命令不输入密码</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或者</span></span><br><span class="line">sudo vim /etc/sudoers </span><br></pre></td></tr></table></figure>
+
+<p>​	在编辑文件中加入这一行 <code>username ALL=(ALL) NOPASSWD: ALL</code> </p>
+<ol start="3">
+<li>设置不允许 root 用户登录</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<p>​	找到并修改 <code>PermitRootLogin no</code></p>
+<p>​	重启 sshd</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
