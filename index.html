@@ -71,6 +71,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP生成字体LOGO" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/23/PHP%E7%94%9F%E6%88%90%E5%AD%97%E4%BD%93LOGO/" class="article-date">
+  <time class="dt-published" datetime="2023-08-23T23:31:25.000Z" itemprop="datePublished">2023-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/23/PHP%E7%94%9F%E6%88%90%E5%AD%97%E4%BD%93LOGO/">PHP生成字体LOGO</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>网上找了一些生成图标的网站都是收费的，遂用 PHP 生成一个文字样式的，将就着用。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Type: image/png&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$width</span>  = <span class="number">144</span>;</span><br><span class="line"><span class="variable">$height</span> = <span class="number">144</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$image</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="variable">$width</span>, <span class="variable">$height</span>);</span><br><span class="line"><span class="variable">$white</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$image</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>);</span><br><span class="line"><span class="title function_ invoke__">imagefill</span>(<span class="variable">$image</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="variable">$white</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$textColor</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$image</span>, <span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">// 红色</span></span><br><span class="line"><span class="variable">$text</span>      = <span class="string">&quot;双色选号&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$fontPath</span> = <span class="string">&#x27;./skurri.ttf&#x27;</span>; <span class="comment">// 替换为你的字体文件路径 , 要找网上开源的</span></span><br><span class="line"><span class="variable">$fontSize</span> = <span class="number">24</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算文本的宽度和高度</span></span><br><span class="line"><span class="variable">$textInfo</span>   = <span class="title function_ invoke__">imagettfbbox</span>(<span class="variable">$fontSize</span>, <span class="number">0</span>, <span class="variable">$fontPath</span>, <span class="variable">$text</span>);</span><br><span class="line"><span class="variable">$textWidth</span>  = <span class="variable">$textInfo</span>[<span class="number">2</span>] - <span class="variable">$textInfo</span>[<span class="number">0</span>];</span><br><span class="line"><span class="variable">$textHeight</span> = <span class="variable">$textInfo</span>[<span class="number">1</span>] - <span class="variable">$textInfo</span>[<span class="number">7</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算文本居中位置</span></span><br><span class="line"><span class="variable">$x</span> = (<span class="variable">$width</span> - <span class="variable">$textWidth</span>) / <span class="number">2</span>;</span><br><span class="line"><span class="variable">$y</span> = (<span class="variable">$height</span> - <span class="variable">$textHeight</span>) / <span class="number">2</span> + <span class="variable">$textHeight</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在图像上添加加粗文本</span></span><br><span class="line"><span class="title function_ invoke__">imagettftext</span>(<span class="variable">$image</span>, <span class="variable">$fontSize</span>, <span class="number">0</span>, <span class="variable">$x</span>, <span class="variable">$y</span>, <span class="variable">$textColor</span>, <span class="variable">$fontPath</span>, <span class="variable">$text</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$image</span>);</span><br><span class="line"><span class="title function_ invoke__">imagedestroy</span>(<span class="variable">$image</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/08/23/PHP%E7%94%9F%E6%88%90%E5%AD%97%E4%BD%93LOGO/" data-id="clloujmso0000strrhabd3t4a" data-title="PHP生成字体LOGO" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-python常用数据结构的声明与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
@@ -579,63 +620,6 @@
 
 
   
-    <article id="post-2022年终总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="article-date">
-  <time class="dt-published" datetime="2022-12-24T02:09:39.000Z" itemprop="datePublished">2022-12-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2022年终总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>2022 年即将结束，在七麦也已度过一年的时间。这一年对自己的影响还是挺大的，第一次接触盈利的互联网产品，让自己有了一些产品创造、企业生存的感触。同事多是全能型选手，公司没有专门的运维，唯一的安卓还是技术总监自学着做的。不过像七麦这样的互联网公司，确实要求技术人员应该是全能的，最起码领导层得是全能的，因为有些工作（比如运维）专门招一个人来做，人力成本太大，且该工作也不是经常有的，招完人后可能造成忙一天闲三天的情况。</p>
-<p>回望一年的工作，让自己感觉到有提升的地方，有如下几个：</p>
-<ul>
-<li>做了原路退款，有了跟钱打交道的经验</li>
-<li>做了悬赏的快手的推广，有了推广对接的经验</li>
-<li>接入了穿山甲广告，有了项目广告创利的经验</li>
-<li>做了公众号绑定授权，有了微信开发的一些经验</li>
-</ul>
-<p>诚然，这些经验还很浅薄，只是做了对应功能的一部分工作，但是这些都是我之前没有做过的。有了初次的经验，下一次再接触类似的需求，大脑便不会再抵触。</p>
-<p>当然这一年还做了许多其它的工作，不过那些工作多是使用已有的经验进行需求的实现。对于这部分的工作，如果想要做的更好，应该看一些关于写代码的修养、项目工作与上线、项目安全防范的书。这些能力应该是属于程序员的软实力，一时间看不出来，却融于一点一滴的工作当中。</p>
-<p>以往对新一年的预期多流于物质方面，这其实不太可取，因为即使实现了，也并没有什么成就感。随着一年年的过去，以前有过的考研、软考的想法都已被自己抛入脑后，日子一天天混着过。以后对新年的规划要着重于自身能力的提升，无论是哪个方面，只要是以前自己不具备的，又对自己身心有益的，都可以。不过切忌贪多，一年中干不成多少事，定个两三件即可。</p>
-<p>这一年生活上没有什么值得称道的事，因为疫情，休息的时候也没有去其它的地方转转。10 月份的时候去了德州，婚事定于明年 10 月份。婚事一完，爸妈也算是了却了一桩心思，应该能更轻松一点。如今疫情放开，明年的话倒可以利用假期多出去走走。</p>
-<p>明年的话，给自己定两件任务。一件是把 Go 语言学一下，对于它的 Web 开发和微服务都要了解一下，自己实际的做点东西，提升一下自己职业上的竞争力。要把 Go 官网上面的教程都看个三五遍，就看英文原版，这也是一件自己以前没做过的事。另一件是把 E 大的推荐书单都看一下，期望可以建立起自己的投资系统，有朝一日投资的收入覆盖起生活的支出。</p>
-<p>4.4 颐和园</p>
-<p><img src="https://i.328888.xyz/2022/12/24/DCb7A.jpeg" alt="4.4颐和园.jpeg"></p>
-<p>10.22 环球</p>
-<p><img src="https://i.328888.xyz/2022/12/24/DCOwc.jpeg" alt="10.22环球.jpeg"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" data-id="cle7z0ljj0008jvrrh4nq1fg6" data-title="2022年终总结" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -686,6 +670,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/23/PHP%E7%94%9F%E6%88%90%E5%AD%97%E4%BD%93LOGO/">PHP生成字体LOGO</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/">python常用数据结构的声明与使用</a>
           </li>
         
@@ -699,10 +687,6 @@
         
           <li>
             <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/">APIFOX 设置前置脚本</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/">PHPStorm侧边栏Project里只展示文件不展示文件夹</a>
           </li>
         
       </ul>
