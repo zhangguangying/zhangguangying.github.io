@@ -71,6 +71,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP-使用-Memcache-存储-SESSION-时-SESSIONID-的前缀" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/" class="article-date">
+  <time class="dt-published" datetime="2023-02-08T19:34:36.000Z" itemprop="datePublished">2023-02-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/">PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/memcached.sessions.php">https://www.php.net/manual/zh/memcached.sessions.php</a></p>
+<p>memcached 提供了一个自定义的 session 处理程序可以被用于存储用户 session 数据到 memcached 服务端。 一个完全独立的 memcached 实例将会在内部使用，因此如果需要您可以设置一个不同的服务器池。session 的 key 被存储在前缀 <code>memc.sess.key.</code> 之下，因此, 如果你对 session 和通常的缓存使用了 同样的服务器池，请注意这一点。 译注：另外一个 session 和通常缓存分离的原因是当通常的缓存占满了 memcached 服务端后，可能会导致你的 session 被 从缓存中踢除，导致用户莫名的掉线。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2023/02/08/PHP-%E4%BD%BF%E7%94%A8-Memcache-%E5%AD%98%E5%82%A8-SESSION-%E6%97%B6-SESSIONID-%E7%9A%84%E5%89%8D%E7%BC%80/" data-id="cle7z0ljh0005jvrr8zzp1jwg" data-title="PHP 使用 Memcache 存储 SESSION 时, SESSIONID 的前缀" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-2022年终总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/12/24/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="article-date">
@@ -449,7 +489,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
     </div>
   </div>
 
@@ -460,6 +500,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/10/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5%E5%A4%96%E7%BD%91%E7%9A%84%E6%96%B9%E5%BC%8F/">服务器连接外网的方式</a>
+          </li>
         
           <li>
             <a href="/2023/08/23/PHP%E7%94%9F%E6%88%90%E5%AD%97%E4%BD%93LOGO/">PHP生成字体LOGO</a>
@@ -475,10 +519,6 @@
         
           <li>
             <a href="/2023/07/14/%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%9F%9F%E5%90%8D%E5%9C%A8%E5%BE%AE%E4%BF%A1%E6%98%AF%E5%90%A6%E8%A2%AB%E5%B0%81/">如何检测域名在微信是否被封</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/14/APIFOX-%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/">APIFOX 设置前置脚本</a>
           </li>
         
       </ul>
