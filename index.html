@@ -71,6 +71,65 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-dcat-admin-拖拽排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/19/dcat-admin-%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2024-02-19T23:40:30.000Z" itemprop="datePublished">2024-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/19/dcat-admin-%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F/">dcat admin 拖拽排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>dcat admin 本身提供的模型树 ，可以实现拖拽排序的功能，只是这个功能没办法融合现有的数据表格相关的功能，所以网上找了一个支持拖拽的插件 ：<a target="_blank" rel="noopener" href="https://github.com/pstldz/dcat-admin-grid-sotrable">https://github.com/pstldz/dcat-admin-grid-sotrable</a> 。官方本身也提供了一个支持拖拽的插件，不过是基于 1.0 的，我们的项目版本 2.2 没办法使用。</p>
+<h2 id="插件的安装"><a href="#插件的安装" class="headerlink" title="插件的安装"></a>插件的安装</h2><p><strong>安装</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require pstldz/dcat-admin-grid-sotrable</span><br></pre></td></tr></table></figure>
+
+<p>然后打开<code>http://yourhost/admin/auth/extensions</code> ，依次点击 <code>更新</code> 和 <code>启用</code> 。</p>
+<p><strong>使用</strong></p>
+<p>修改模型</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Spatie</span>\<span class="title">EloquentSortable</span>\<span class="title">Sortable</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Spatie</span>\<span class="title">EloquentSortable</span>\<span class="title">SortableTrait</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Template</span> <span class="keyword">extends</span> <span class="title">Model</span> <span class="keyword">implements</span> <span class="title">Sortable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">SortableTrait</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$sortable</span> = [</span><br><span class="line">        <span class="string">&#x27;order_column_name&#x27;</span>  =&gt; <span class="string">&#x27;order_column&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;sort_when_creating&#x27;</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>添加数据仓库</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Dcat</span>\<span class="title">Admin</span>\<span class="title">Repositories</span>\<span class="title">EloquentRepository</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Entities</span>\<span class="title">Template</span> <span class="keyword">as</span> <span class="title">TemplateModel</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Template</span> <span class="keyword">extends</span> <span class="title">EloquentRepository</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$eloquentClass</span> = <span class="title class_">TemplateModel</span>::<span class="variable language_">class</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在表格中使用对应的排序字段</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Repositories</span>\<span class="title">Template</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="title class_">Grid</span>::<span class="title function_ invoke__">make</span>(<span class="title class_">Template</span>::<span class="variable language_">class</span>, function (Grid <span class="variable">$grid</span>) &#123;</span><br><span class="line">    <span class="variable">$grid</span>-&gt;<span class="title function_ invoke__">sortable</span>(<span class="string">&#x27;order_column&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="定制逻辑"><a href="#定制逻辑" class="headerlink" title="定制逻辑"></a>定制逻辑</h2><p>由于这个插件默认是按照排序字段正序的，项目中使用的是倒序，且要把已隐藏的模板置后，所以自定义了排序逻辑。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Template</span> <span class="keyword">extends</span> <span class="title">Model</span> <span class="keyword">implements</span> <span class="title">Sortable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">SortableTrait</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$sortable</span> = [</span><br><span class="line">        <span class="string">&#x27;order_column_name&#x27;</span>  =&gt; <span class="string">&#x27;order_column&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;sort_when_creating&#x27;</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定制排序 ，重写了 SortableTrait 中的方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">scopeOrdered</span>(<span class="params">Builder <span class="variable">$query</span>, <span class="keyword">string</span> <span class="variable">$direction</span> = <span class="string">&#x27;desc&#x27;</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line"><span class="comment">//        return $query-&gt;orderBy($this-&gt;determineOrderColumnName(), $direction);</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$query</span>-&gt;<span class="title function_ invoke__">orderByDesc</span>(<span class="string">&#x27;status&#x27;</span>)</span><br><span class="line">            -&gt;<span class="title function_ invoke__">orderByDesc</span>(<span class="string">&#x27;sort&#x27;</span>)</span><br><span class="line">            -&gt;<span class="title function_ invoke__">orderByDesc</span>(<span class="string">&#x27;id&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改了排序逻辑之后，需要修改保存排序按钮的工具逻辑。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Pstldz</span>\<span class="title class_">DcatAdminGridSotrable</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Dcat</span>\<span class="title">Admin</span>\<span class="title">Admin</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Dcat</span>\<span class="title">Admin</span>\<span class="title">Form</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Dcat</span>\<span class="title">Admin</span>\<span class="title">Grid</span>\<span class="title">Tools</span>\<span class="title">AbstractTool</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SaveOrderButton</span> <span class="keyword">extends</span> <span class="title">AbstractTool</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="comment">// ......</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$status</span> = <span class="literal">true</span>;</span><br><span class="line">        <span class="variable">$column</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;_column&#x27;</span>);</span><br><span class="line">        <span class="variable">$message</span> = <span class="title function_ invoke__">admin_trans</span>(<span class="string">&#x27;sortable.save_succeeded&#x27;</span>);</span><br><span class="line">        <span class="variable">$repository</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;_model&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="variable">$sorts</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;_sort&#x27;</span>);</span><br><span class="line">        <span class="variable">$sorts</span> = <span class="title function_ invoke__">collect</span>(<span class="variable">$sorts</span>)</span><br><span class="line">            -&gt;<span class="title function_ invoke__">pluck</span>(<span class="string">&#x27;key&#x27;</span>)</span><br><span class="line">            -&gt;<span class="title function_ invoke__">combine</span>(</span><br><span class="line">                <span class="title function_ invoke__">collect</span>(<span class="variable">$sorts</span>)-&gt;<span class="title function_ invoke__">pluck</span>(<span class="string">&#x27;sort&#x27;</span>)-&gt;<span class="title function_ invoke__">sortDesc</span>() # 改成倒序</span><br><span class="line">            );</span><br><span class="line">        <span class="comment">// ......</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2024/02/19/dcat-admin-%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F/" data-id="clsu2oiv60000s9rr5siq45ym" data-title="dcat admin 拖拽排序" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-电脑与手机共享文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/10/31/%E7%94%B5%E8%84%91%E4%B8%8E%E6%89%8B%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/" class="article-date">
@@ -617,46 +676,6 @@
 
 
   
-    <article id="post-windows代理配置白名单" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/" class="article-date">
-  <time class="dt-published" datetime="2023-04-03T06:50:23.000Z" itemprop="datePublished">2023-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/">windows代理配置白名单</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>使用代理时，如果没有设置代理白名单，本地项目设置的以及一些内网使用的域名，会没有办法使用，按如下方式添加白名单。</p>
-<p><img src="/images/01.png"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2023/04/03/windows%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95/" data-id="clg0h8w6w0000j1rr6h9g6dd8" data-title="windows代理配置白名单" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -694,7 +713,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
     </div>
   </div>
 
@@ -705,6 +724,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/02/19/dcat-admin-%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F/">dcat admin 拖拽排序</a>
+          </li>
         
           <li>
             <a href="/2023/10/31/%E7%94%B5%E8%84%91%E4%B8%8E%E6%89%8B%E6%9C%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/">电脑与手机共享文件</a>
@@ -722,10 +745,6 @@
             <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/">python常用数据结构的声明与使用</a>
           </li>
         
-          <li>
-            <a href="/2023/08/16/Linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/">Linux软件管理的一些总结</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -739,7 +758,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2023 张光应<br>
+      &copy; 2024 张光应<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
