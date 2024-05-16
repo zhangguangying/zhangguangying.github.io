@@ -71,6 +71,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-docker使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/16/docker%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2024-05-16T00:38:59.000Z" itemprop="datePublished">2024-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/05/16/docker%E4%BD%BF%E7%94%A8/">docker使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="搭建-nginx-php-fpm"><a href="#搭建-nginx-php-fpm" class="headerlink" title="搭建 nginx + php-fpm"></a>搭建 nginx + php-fpm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取 php-fpm8.2 配置文件(23d4f3cf4092 为先启动的一个 php-fpm 容器)</span></span><br><span class="line">docker cp 23d4f3cf4092:/usr/local/etc/php/ ./</span><br><span class="line">docker cp 23d4f3cf4092:/usr/local/etc/php-fpm.conf ./</span><br><span class="line">docker cp 23d4f3cf4092:/usr/local/etc/php-fpm.d ./</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行 php-fpm8.2容器</span></span><br><span class="line">docker run --name php82-fpm --network dnmp -d -p 9000:9000 -v /mnt/c/Users/hyuii/code/docker/lnmp/php/php-fpm.d:/usr/local/etc/php-fpm.d -v /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html php:8.2-fpm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取 nginx 配置文件(eca00766479f 为先启动的一个 nginx 容器)</span></span><br><span class="line">docker cp eca00766479f:/etc/nginx/conf.d ./</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行 nginx</span></span><br><span class="line">docker run -d -p 80:80 -v /mnt/c/Users/hyuii/code/docker/lnmp/nginx/conf.d:/etc/nginx/conf.d -v /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html --network dnmp nginx:1.26.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx-配置文件示例"><a href="#nginx-配置文件示例" class="headerlink" title="nginx 配置文件示例"></a>nginx 配置文件示例</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80<span class="comment">;</span></span><br><span class="line">    listen  <span class="section">[::]</span>:80<span class="comment">;</span></span><br><span class="line">    server_name  localhost<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  /var/log/nginx/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /var/www/html<span class="comment">;</span></span><br><span class="line">        index  index.html index.htm index.php<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 容器网络中，使用 php82-fpm 容器名来访问 php-fpm</span></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   php82-fpm:9000<span class="comment">;</span></span><br><span class="line">        fastcgi_index  index.php<span class="comment">;</span></span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  /var/www/html$fastcgi_script_name<span class="comment">;</span></span><br><span class="line">        include        fastcgi_params<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># deny access to .htaccess files, if Apache&#x27;s document root</span></span><br><span class="line">    <span class="comment"># concurs with nginx&#x27;s one</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment">#location ~ /\.ht &#123;</span></span><br><span class="line">    <span class="comment">#    deny  all;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问-php-文件-404"><a href="#访问-php-文件-404" class="headerlink" title="访问 php 文件 404"></a>访问 php 文件 404</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">需要把 nginx server 块配置文件的 SCRIPT_FILENAME 值加上对应的 php-fpm 中的项目目录</span></span><br><span class="line">fastcgi_param  SCRIPT_FILENAME  /var/www/html$fastcgi_script_name;</span><br></pre></td></tr></table></figure>
+
+<h2 id="php-安装-redis-扩展"><a href="#php-安装-redis-扩展" class="headerlink" title="php 安装 redis 扩展"></a>php 安装 redis 扩展</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pecl install redis-5.3.7 </span><br><span class="line">docker-php-ext-enable redis</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启 php-fpm</span></span><br><span class="line">docker restart 容器id</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker-compose-文件"><a href="#docker-compose-文件" class="headerlink" title="docker-compose 文件"></a>docker-compose 文件</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    image: &quot;nginx:1.26.0&quot;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:80&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/nginx/conf.d:/etc/nginx/conf.d</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html</span><br><span class="line">  php82-fpm:</span><br><span class="line">    image: &quot;php:8.2-fpm&quot;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9000:9000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/php/php-fpm.d:/usr/local/etc/php-fpm.d</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2024/05/16/docker%E4%BD%BF%E7%94%A8/" data-id="clw905tgt0000tjrrah4ccizf" data-title="docker使用" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-使用-Supervisor-管理进程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/27/%E4%BD%BF%E7%94%A8-Supervisor-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/" class="article-date">
@@ -667,47 +715,6 @@
 
 
   
-    <article id="post-PHPStorm侧边栏Project里只展示文件不展示文件夹" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/" class="article-date">
-  <time class="dt-published" datetime="2023-07-11T22:39:11.000Z" itemprop="datePublished">2023-07-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/">PHPStorm侧边栏Project里只展示文件不展示文件夹</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>删除项目中的 .idea 文件夹，重启 PHPStorm 。无效的话重试一次。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2023/07/11/PHPStorm%E4%BE%A7%E8%BE%B9%E6%A0%8FProject%E9%87%8C%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E4%B8%8D%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9/" data-id="cljzcqasw0000j5rrgoike40b" data-title="PHPStorm侧边栏Project里只展示文件不展示文件夹" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHPStorm/" rel="tag">PHPStorm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -745,7 +752,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li></ul>
     </div>
   </div>
 
@@ -756,6 +763,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/05/16/docker%E4%BD%BF%E7%94%A8/">docker使用</a>
+          </li>
         
           <li>
             <a href="/2024/02/27/%E4%BD%BF%E7%94%A8-Supervisor-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/">使用 Supervisor 管理进程</a>
@@ -771,10 +782,6 @@
         
           <li>
             <a href="/2023/10/26/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5%E5%A4%96%E7%BD%91%E7%9A%84%E6%96%B9%E5%BC%8F/">服务器连接外网的方式</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/23/PHP%E7%94%9F%E6%88%90%E5%AD%97%E4%BD%93LOGO/">PHP生成字体LOGO</a>
           </li>
         
       </ul>

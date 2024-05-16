@@ -4,19 +4,18 @@
   <meta charset="utf-8">
   
   
-  <title>python常用数据结构的声明与使用 | 张光应的个人博客</title>
+  <title>docker使用 | 张光应的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="list声明方式 123l1 &#x3D; [1, 2, 3, 4]l2 &#x3D; list([1, 2, 3, 4])l3 &#x3D; list(range(1, 5))  方法  append(item): 在列表末尾添加元素。 insert(index, item): 在指定位置插入元素。 remove(item): 删除第一个匹配的元素。 pop(index): 弹出指定位置的元素。 len(list): 返回列">
+  <meta name="description" content="搭建 nginx + php-fpm12345678910111213# 获取 php-fpm8.2 配置文件(23d4f3cf4092 为先启动的一个 php-fpm 容器)docker cp 23d4f3cf4092:&#x2F;usr&#x2F;local&#x2F;etc&#x2F;php&#x2F; .&#x2F;docker cp 23d4f3cf4092:&#x2F;usr&#x2F;local&#x2F;etc&#x2F;php-fpm.conf .&#x2F;docker cp 23d4">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python常用数据结构的声明与使用">
-<meta property="og:url" content="https://zhangguangying.github.io/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="docker使用">
+<meta property="og:url" content="https://zhangguangying.github.io/2024/05/16/docker%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="张光应的个人博客">
-<meta property="og:description" content="list声明方式 123l1 &#x3D; [1, 2, 3, 4]l2 &#x3D; list([1, 2, 3, 4])l3 &#x3D; list(range(1, 5))  方法  append(item): 在列表末尾添加元素。 insert(index, item): 在指定位置插入元素。 remove(item): 删除第一个匹配的元素。 pop(index): 弹出指定位置的元素。 len(list): 返回列">
+<meta property="og:description" content="搭建 nginx + php-fpm12345678910111213# 获取 php-fpm8.2 配置文件(23d4f3cf4092 为先启动的一个 php-fpm 容器)docker cp 23d4f3cf4092:&#x2F;usr&#x2F;local&#x2F;etc&#x2F;php&#x2F; .&#x2F;docker cp 23d4f3cf4092:&#x2F;usr&#x2F;local&#x2F;etc&#x2F;php-fpm.conf .&#x2F;docker cp 23d4">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-18T02:32:40.000Z">
-<meta property="article:modified_time" content="2023-08-18T02:32:40.000Z">
+<meta property="article:published_time" content="2024-05-16T00:38:59.000Z">
+<meta property="article:modified_time" content="2024-05-16T00:38:59.000Z">
 <meta property="article:author" content="张光应">
-<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="张光应的个人博客" type="application/atom+xml">
@@ -74,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-python常用数据结构的声明与使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-docker使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2023-08-18T02:32:40.000Z" itemprop="datePublished">2023-08-18</time>
+    <a href="/2024/05/16/docker%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2024-05-16T00:38:59.000Z" itemprop="datePublished">2024-05-16</time>
 </a>
     
   </div>
@@ -88,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      python常用数据结构的声明与使用
+      docker使用
     </h1>
   
 
@@ -96,78 +95,34 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><p>声明方式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">l2 = <span class="built_in">list</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">l3 = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+        <h2 id="搭建-nginx-php-fpm"><a href="#搭建-nginx-php-fpm" class="headerlink" title="搭建 nginx + php-fpm"></a>搭建 nginx + php-fpm</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取 php-fpm8.2 配置文件(23d4f3cf4092 为先启动的一个 php-fpm 容器)</span></span><br><span class="line">docker cp 23d4f3cf4092:/usr/local/etc/php/ ./</span><br><span class="line">docker cp 23d4f3cf4092:/usr/local/etc/php-fpm.conf ./</span><br><span class="line">docker cp 23d4f3cf4092:/usr/local/etc/php-fpm.d ./</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行 php-fpm8.2容器</span></span><br><span class="line">docker run --name php82-fpm --network dnmp -d -p 9000:9000 -v /mnt/c/Users/hyuii/code/docker/lnmp/php/php-fpm.d:/usr/local/etc/php-fpm.d -v /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html php:8.2-fpm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取 nginx 配置文件(eca00766479f 为先启动的一个 nginx 容器)</span></span><br><span class="line">docker cp eca00766479f:/etc/nginx/conf.d ./</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行 nginx</span></span><br><span class="line">docker run -d -p 80:80 -v /mnt/c/Users/hyuii/code/docker/lnmp/nginx/conf.d:/etc/nginx/conf.d -v /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html --network dnmp nginx:1.26.0</span><br></pre></td></tr></table></figure>
 
-<p>方法</p>
-<ul>
-<li><code>append(item)</code>: 在列表末尾添加元素。</li>
-<li><code>insert(index, item)</code>: 在指定位置插入元素。</li>
-<li><code>remove(item)</code>: 删除第一个匹配的元素。</li>
-<li><code>pop(index)</code>: 弹出指定位置的元素。</li>
-<li><code>len(list)</code>: 返回列表的长度。</li>
-<li><code>index(item)</code>: 返回指定元素的索引。</li>
-<li><code>count(item)</code>: 统计指定元素出现的次数。</li>
-<li><code>sort()</code>: 对列表进行排序（就地排序）。</li>
-<li><code>reverse()</code>: 反转列表元素的顺序。</li>
-</ul>
-<h2 id="tuple"><a href="#tuple" class="headerlink" title="tuple"></a>tuple</h2><p>声明</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t1 = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">t2 = <span class="built_in">tuple</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="nginx-配置文件示例"><a href="#nginx-配置文件示例" class="headerlink" title="nginx 配置文件示例"></a>nginx 配置文件示例</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80<span class="comment">;</span></span><br><span class="line">    listen  <span class="section">[::]</span>:80<span class="comment">;</span></span><br><span class="line">    server_name  localhost<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  /var/log/nginx/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /var/www/html<span class="comment">;</span></span><br><span class="line">        index  index.html index.htm index.php<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 容器网络中，使用 php82-fpm 容器名来访问 php-fpm</span></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   php82-fpm:9000<span class="comment">;</span></span><br><span class="line">        fastcgi_index  index.php<span class="comment">;</span></span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  /var/www/html$fastcgi_script_name<span class="comment">;</span></span><br><span class="line">        include        fastcgi_params<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># deny access to .htaccess files, if Apache&#x27;s document root</span></span><br><span class="line">    <span class="comment"># concurs with nginx&#x27;s one</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment">#location ~ /\.ht &#123;</span></span><br><span class="line">    <span class="comment">#    deny  all;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><p>声明</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d1 = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">30</span>&#125;</span><br><span class="line">d2 = <span class="built_in">dict</span>([(<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>)])</span><br></pre></td></tr></table></figure>
+<h2 id="访问-php-文件-404"><a href="#访问-php-文件-404" class="headerlink" title="访问 php 文件 404"></a>访问 php 文件 404</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">需要把 nginx server 块配置文件的 SCRIPT_FILENAME 值加上对应的 php-fpm 中的项目目录</span></span><br><span class="line">fastcgi_param  SCRIPT_FILENAME  /var/www/html$fastcgi_script_name;</span><br></pre></td></tr></table></figure>
 
-<p>方法</p>
-<ul>
-<li><code>keys()</code>: 返回字典的所有键。</li>
-<li><code>values()</code>: 返回字典的所有值。</li>
-<li><code>items()</code>: 返回字典的所有键-值对。</li>
-<li><code>get(key)</code>: 根据键获取对应的值。</li>
-<li><code>pop(key)</code>: 弹出指定键的值。</li>
-<li><code>len(dict)</code>: 返回字典中键-值对的数量。</li>
-<li><code>in</code> 和 <code>not in</code>：检查键是否存在于字典中。</li>
-</ul>
-<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>声明</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">s2 = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="php-安装-redis-扩展"><a href="#php-安装-redis-扩展" class="headerlink" title="php 安装 redis 扩展"></a>php 安装 redis 扩展</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pecl install redis-5.3.7 </span><br><span class="line">docker-php-ext-enable redis</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启 php-fpm</span></span><br><span class="line">docker restart 容器id</span><br></pre></td></tr></table></figure>
 
-<p>方法</p>
-<ul>
-<li><code>add(item)</code>: 添加元素到集合。</li>
-<li><code>remove(item)</code>: 移除集合中的元素，如果元素不存在会引发错误。</li>
-<li><code>discard(item)</code>: 移除集合中的元素，如果元素不存在不会引发错误。</li>
-<li><code>pop()</code>: 弹出一个元素。</li>
-<li><code>len(set)</code>: 返回集合的大小。</li>
-<li><code>in</code> 和 <code>not in</code>：检查元素是否存在于集合中。</li>
-</ul>
+<h2 id="docker-compose-文件"><a href="#docker-compose-文件" class="headerlink" title="docker-compose 文件"></a>docker-compose 文件</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    image: &quot;nginx:1.26.0&quot;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:80&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/nginx/conf.d:/etc/nginx/conf.d</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html</span><br><span class="line">  php82-fpm:</span><br><span class="line">    image: &quot;php:8.2-fpm&quot;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;9000:9000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/php/php-fpm.d:/usr/local/etc/php-fpm.d</span><br><span class="line">      - /mnt/c/Users/hyuii/code/docker/lnmp/html:/var/www/html</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zhangguangying.github.io/2023/08/18/python%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8/" data-id="cllggc77z0000vgrr2yn39mle" data-title="python常用数据结构的声明与使用" class="article-share-link">分享</a>
+      <a data-url="https://zhangguangying.github.io/2024/05/16/docker%E4%BD%BF%E7%94%A8/" data-id="clw905tgt0000tjrrah4ccizf" data-title="docker使用" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2023/08/23/PHP%E7%94%9F%E6%88%90%E5%AD%97%E4%BD%93LOGO/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          PHP生成字体LOGO
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/08/16/Linux%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/02/27/%E4%BD%BF%E7%94%A8-Supervisor-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">Linux软件管理的一些总结</div>
+      <div class="article-nav-title">使用 Supervisor 管理进程</div>
     </a>
   
 </nav>
