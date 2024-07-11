@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>标签: Dcat | 张光应的个人博客</title>
+  <title>使用 Charles + Shadowrocket 进行 IOS 抓包 | 张光应的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="张光应的个人博客">
-<meta property="og:url" content="https://zhangguangying.github.io/tags/Dcat/index.html">
+  <meta name="description" content="使用 Charles + Shadowrocket 进行 IOS 抓包Charles 安装 安装最新版 ：https:&#x2F;&#x2F;www.charlesproxy.com&#x2F;download&#x2F;latest-release&#x2F; 注册 ：点击 Help -&gt; Register to ，录入下面的授权信息 ，或者访问 https:&#x2F;&#x2F;www.charles.ren 生成  12Registered Name：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Charles + Shadowrocket 进行 IOS 抓包">
+<meta property="og:url" content="https://zhangguangying.github.io/2024/07/11/%E4%BD%BF%E7%94%A8-Charles-Shadowrocket-%E8%BF%9B%E8%A1%8C-IOS-%E6%8A%93%E5%8C%85/index.html">
 <meta property="og:site_name" content="张光应的个人博客">
+<meta property="og:description" content="使用 Charles + Shadowrocket 进行 IOS 抓包Charles 安装 安装最新版 ：https:&#x2F;&#x2F;www.charlesproxy.com&#x2F;download&#x2F;latest-release&#x2F; 注册 ：点击 Help -&gt; Register to ，录入下面的授权信息 ，或者访问 https:&#x2F;&#x2F;www.charles.ren 生成  12Registered Name：">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-11T02:39:41.000Z">
+<meta property="article:modified_time" content="2024-07-11T02:39:41.000Z">
 <meta property="article:author" content="张光应">
+<meta property="article:tag" content="Charles, 抓包">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="张光应的个人博客" type="application/atom+xml">
@@ -69,39 +74,68 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2024/02/19/dcat-admin-%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  <time class="dt-published" datetime="2024-02-19T23:40:30.000Z" itemprop="datePublished">2月 20</time>
+        <section id="main"><article id="post-使用-Charles-Shadowrocket-进行-IOS-抓包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/11/%E4%BD%BF%E7%94%A8-Charles-Shadowrocket-%E8%BF%9B%E8%A1%8C-IOS-%E6%8A%93%E5%8C%85/" class="article-date">
+  <time class="dt-published" datetime="2024-07-11T02:39:41.000Z" itemprop="datePublished">2024-07-11</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/02/19/dcat-admin-%E6%8B%96%E6%8B%BD%E6%8E%92%E5%BA%8F/">dcat admin 拖拽排序</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用 Charles + Shadowrocket 进行 IOS 抓包
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="使用-Charles-Shadowrocket-进行-IOS-抓包"><a href="#使用-Charles-Shadowrocket-进行-IOS-抓包" class="headerlink" title="使用 Charles + Shadowrocket 进行 IOS 抓包"></a>使用 Charles + Shadowrocket 进行 IOS 抓包</h1><h2 id="Charles-安装"><a href="#Charles-安装" class="headerlink" title="Charles 安装"></a>Charles 安装</h2><ol>
+<li>安装最新版 ：<a target="_blank" rel="noopener" href="https://www.charlesproxy.com/download/latest-release/">https://www.charlesproxy.com/download/latest-release/</a></li>
+<li>注册 ：点击 Help -&gt; Register to ，录入下面的授权信息 ，或者访问 <a target="_blank" rel="noopener" href="https://www.charles.ren/">https://www.charles.ren</a> 生成</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Registered Name：ddmc</span><br><span class="line">License Key：8DEA943587A9B04870</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>打开 socket 代理 ：Proxy -&gt; Proxy Settings 勾选 Enable SOCKS proxy</li>
+</ol>
+<h2 id="配置-Shadowrocket"><a href="#配置-Shadowrocket" class="headerlink" title="配置 Shadowrocket"></a>配置 Shadowrocket</h2><p>打开 shadowrocket ，添加服务器 ，添加服务器，类型选择 Socks5 ，Address 填 Charles 机器的 IP 地址，Port 填 Charles 设置的 Socks 端口（与 HTTP 的不同）。Charles 地址可以通过 ：Help -&gt; Local IP Address 查看。</p>
+<p>添加完成，开启代理。此时 iPhone 访问网络，Charles 应该会有一个允许访问网络的弹窗，点击允许。如果 Charles 没有刷新内容，且 iPhone 无法上网 ，可以尝试关闭 windows 防火墙，重启下 Charles 。</p>
+<h2 id="启用-SSL-请求代理"><a href="#启用-SSL-请求代理" class="headerlink" title="启用 SSL 请求代理"></a>启用 SSL 请求代理</h2><p>windows 安装证书 ：Help -&gt; SSL Proxying -&gt; Install Charles Root Certificate ，点击安装证书 。</p>
+<p>iPhone 通过 safari 访问 chls.pro&#x2F;ssl 安装证书，如果访问不了，可以在 windows 上访问该地址下载后，再传输到 iPhone 中。证书下载完，到系统设置的首页进行安装。证书安装好通过 ：设置 -&gt; 通用 -&gt; 关于本机 -&gt; 证书信任，查看已信任的证书。</p>
+<p>启用 SSL ：Proxy -&gt; SSL Proxy Setting -&gt; Enable SSL Proxying</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhangguangying.github.io/2024/07/11/%E4%BD%BF%E7%94%A8-Charles-Shadowrocket-%E8%BF%9B%E8%A1%8C-IOS-%E6%8A%93%E5%8C%85/" data-id="clyh524es00004xrr6csn0u09" data-title="使用 Charles + Shadowrocket 进行 IOS 抓包" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Charles-%E6%8A%93%E5%8C%85/" rel="tag">Charles, 抓包</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/05/16/docker%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">docker使用</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
