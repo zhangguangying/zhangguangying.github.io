@@ -105,11 +105,38 @@
 <ol start="3">
 <li>打开 socket 代理 ：Proxy -&gt; Proxy Settings 勾选 Enable SOCKS proxy</li>
 </ol>
-<h2 id="配置-Shadowrocket"><a href="#配置-Shadowrocket" class="headerlink" title="配置 Shadowrocket"></a>配置 Shadowrocket</h2><p>打开 shadowrocket ，添加服务器 ，添加服务器，类型选择 Socks5 ，Address 填 Charles 机器的 IP 地址，Port 填 Charles 设置的 Socks 端口（与 HTTP 的不同）。Charles 地址可以通过 ：Help -&gt; Local IP Address 查看。</p>
+<h2 id="启用-SSL-请求代理"><a href="#启用-SSL-请求代理" class="headerlink" title="启用 SSL 请求代理"></a>启用 SSL 请求代理</h2><p>windows 安装证书 ：</p>
+<ul>
+<li>Help -&gt; SSL Proxying -&gt; Install Charles Root Certificate ，点击安装证书 。</li>
+<li>在为证书指定位置时，<font color=red>选择”将所有的证书都放入下列存储”，选择”受信任的根证书颁发机构”。</font></li>
+<li>安装完之后重启 charles</li>
+</ul>
+<p>iPhone 安装证书：</p>
+<ul>
+<li>通过 safari 访问 chls.pro&#x2F;ssl 安装证书，如果访问不了，可以在 windows 上访问该地址下载后，再传输到 iPhone 中。</li>
+<li>证书下载完，到系统设置的首页进行安装。</li>
+<li>证书安装好通过 ：<font color='red'>设置 -&gt; 通用 -&gt; 关于本机 -&gt; 证书信任</font>，信任刚才安装的证书。</li>
+</ul>
+<p>windows 启用 SSL ：Proxy -&gt; SSL Proxy Setting -&gt; Enable SSL Proxying</p>
+<h2 id="配置-Shadowrocket"><a href="#配置-Shadowrocket" class="headerlink" title="配置 Shadowrocket"></a>配置 Shadowrocket</h2><p>打开 shadowrocket ，添加服务器 ，类型选择 Socks5 ，Address 填 Charles 机器的 IP 地址，Port 填 Charles 设置的 Socks 端口（与 HTTP 的不同）。Charles 地址可以通过 ：Help -&gt; Local IP Address 查看。</p>
 <p>添加完成，开启代理。此时 iPhone 访问网络，Charles 应该会有一个允许访问网络的弹窗，点击允许。如果 Charles 没有刷新内容，且 iPhone 无法上网 ，可以尝试关闭 windows 防火墙，重启下 Charles 。</p>
-<h2 id="启用-SSL-请求代理"><a href="#启用-SSL-请求代理" class="headerlink" title="启用 SSL 请求代理"></a>启用 SSL 请求代理</h2><p>windows 安装证书 ：Help -&gt; SSL Proxying -&gt; Install Charles Root Certificate ，点击安装证书 。</p>
-<p>iPhone 通过 safari 访问 chls.pro&#x2F;ssl 安装证书，如果访问不了，可以在 windows 上访问该地址下载后，再传输到 iPhone 中。证书下载完，到系统设置的首页进行安装。证书安装好通过 ：设置 -&gt; 通用 -&gt; 关于本机 -&gt; 证书信任，查看已信任的证书。</p>
-<p>启用 SSL ：Proxy -&gt; SSL Proxy Setting -&gt; Enable SSL Proxying</p>
+<h2 id="Charles-证书过期处理"><a href="#Charles-证书过期处理" class="headerlink" title="Charles 证书过期处理"></a>Charles 证书过期处理</h2><ol>
+<li><strong>重置证书</strong>：在Charles中，通过选择“Help”-&gt;“SSL Proxying”-&gt;“Reset Charles Root Certificate”来重置证书。</li>
+<li><strong>重新安装证书</strong>：重置后，再次通过“Help”-&gt;“SSL Proxying”-&gt;“Install Charles Root Certificate”来安装证书。</li>
+<li><strong>在电脑上信任证书</strong>：<ul>
+<li>对于Windows系统，你可能需要手动打开证书目录（可以通过运行certlm.msc或certmgr.msc来访问），删除过期的证书，并确保新的证书被信任。</li>
+<li>对于Mac系统，打开钥匙串访问，找到Charles的证书，并设置为“始终信任”。</li>
+</ul>
+</li>
+<li><strong>在移动设备上安装证书</strong>：<ul>
+<li>对于iOS设备，打开Safari浏览器，输入<code>chls.pro/ssl</code>来下载并安装证书。然后，在“设置”-&gt;“通用”-&gt;“关于本机”-&gt;“证书信任设置”中信任该证书。</li>
+<li>对于Android设备，通常需要在浏览器中访问相同的URL来下载并安装证书。</li>
+</ul>
+</li>
+<li><strong>重启Charles和设备</strong>：在安装新证书后，重启Charles和你的设备以确保更改生效。</li>
+<li><strong>检查网络连接</strong>：确保你的设备与Charles代理服务器之间的网络连接是稳定的，任何网络问题都可能导致证书下载失败。</li>
+<li><strong>检查代理设置</strong>：确保你已经正确配置了所有的代理设置，错误的代理设置可能会导致连接问题</li>
+</ol>
 
       
     </div>
